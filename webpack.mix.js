@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+mix.disableNotifications();
 
 /*
  |--------------------------------------------------------------------------
@@ -11,10 +12,19 @@ const mix = require('laravel-mix');
  |
  */
 
-mix
-.js('resources/js/app.js', 'public/js')
-.sass('resources/css/scss/style.scss', 'public/css')
-.postCss('resources/css/app.css', 'public/css', [
-    require("tailwindcss")
-]);
-
+mix.js(['resources/js/app.js',
+        'resources/js/addNewService.js',
+        'resources/js/addNewPack.js',
+        'resources/js/addDomaineAndActivite.js',
+        'resources/js/searchAjax.js',
+        'resources/js/bootstrap.js',
+    ],
+        
+        'public/js')
+    .postCss('resources/css/app.css', 'public/css', [
+    require('postcss-import'),
+    require('tailwindcss'),
+    require('autoprefixer'),
+    ])
+    .sass('resources/css/scss/style.scss',  'public/css/style.css')
+;

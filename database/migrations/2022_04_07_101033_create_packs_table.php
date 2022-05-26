@@ -17,7 +17,7 @@ class CreatePacksTable extends Migration
             $table->bigIncrements('pack_id');
             $table->string('nom_pack');
             $table->string('code_pack');
-            $table->float('tarif');
+            $table->float('pack_tarif');
             $table->boolean('status')->default(false);
             // $table->unsignedBigInteger('service_id');
             // $table->foreign('service_id')->references('service_id')->on('services');

@@ -11,4 +11,9 @@ class DetailsServicesPack extends Model
     
     public $timestamps = false;
     protected $primaryKey = 'service_pack_id';
+
+    protected $fillable=[
+        'service_id',
+        'pack_id',
+    ];
 }

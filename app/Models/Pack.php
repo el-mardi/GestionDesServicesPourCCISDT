@@ -15,7 +15,7 @@ class Pack extends Model
     protected $fillable = [
         'nom_pack',
         'code_pack',
-        'tarif',
+        'pack_tarif',
         'status',
     ];
 

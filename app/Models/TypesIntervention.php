@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class TypesIntervention extends Model
 {
     use HasFactory;
+    public $table = 'types_interventions';
     public $timestamps = false;
     protected $primaryKey = 'type_id';
     protected $fillable =[

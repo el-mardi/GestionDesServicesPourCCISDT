@@ -19,6 +19,8 @@ class CreateRessortissantsTable extends Migration
             $table->string('nom');
             $table->string('prenom');
             $table->string('cin');
+            $table->string('dernier_contrat_accom')->nullable();
+            $table->string('dernier_contrat_adh')->nullable();
             $table->string('nationalite');
             $table->string('residence');
             $table->date('date_naissance');
@@ -36,12 +38,17 @@ class CreateRessortissantsTable extends Migration
             // $table->date('annee_dernier_adh');
             $table->boolean('accompagnement')->default(false);
             $table->string('secteur');
+            $table->string('remarque')->nullable();
 
-            $table->unsignedBigInteger('act_id');
+            $table->string('activite');
+            // $table->unsignedBigInteger('act_id');
+            $table->unsignedBigInteger('dom_id');
             $table->unsignedBigInteger('qualite_id');
             $table->unsignedBigInteger('formeJur_id');
+
             $table->foreign('formeJur_id')->references('formeJur_id')->on('Juridique_formes');
-            $table->foreign('act_id')->references('act_id')->on('activites');
+            // $table->foreign('act_id')->references('act_id')->on('activites');
+            $table->foreign('dom_id')->references('dom_id')->on('domaines');
             $table->foreign('qualite_id')->references('qualite_id')->on('qualites');
             
 

@@ -2,9 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Domaine;
 use App\Models\Qualite;
+use App\Models\Secteur;
 use App\Models\Activite;
+use App\Models\DemandeService;
 use App\Models\JuridiqueForme;
+use App\Models\DemandeAdhesion;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -37,16 +41,28 @@ class Ressortissant extends Model
         'ice',
         'rc',
         'patente',
-        // 'anne_dernier_adh',
+        'dernier_contrat_adh',
+        'dernier_contrat_accom',
         'accompagnement', //vrai si le ressortissant a contrat d'accomp sinon  faux ;
         'secteur',
-        'act_id',
+        'activite',
+        // 'act_id',
+        'dom_id',
         'qualite_id',
         'formeJur_id',
+        'remarque',
     ];
 
     public function activites () {
         return $this->belongsTo(Activite::class, 'act_id');
+    }
+
+    public function domaines () {
+        return $this->belongsTo(Domaine::class, 'dom_id');
+    }
+
+    public function secteurs () {
+        return $this->belongsTo(Secteur::class, 'secteur');
     }
 
     public function qualite () {
@@ -57,4 +73,11 @@ class Ressortissant extends Model
         return $this->belongsTo(JuridiqueForme::class, 'formeJur_id');
     }
     
+    public function demandeService (){
+        return $this->hasMany(DemandeService::class, 'res_id');
+    }
+
+    public function demandeAdhesion (){
+        return $this->hasMany(DemandeAdhesion::class, 'res_id');
+    }
 }

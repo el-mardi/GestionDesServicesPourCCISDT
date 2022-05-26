@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Domaine;
 use App\Models\Activite;
+use App\Models\Ressortissant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -21,5 +22,9 @@ class Secteur extends Model
     }
     public function domaines () {
         return $this->hasMany(Domaine::class, 'sect_id');
+    }
+
+    public function ressortissant () {
+        return $this->hasMany(Ressortissant::class, 'sect_id');
     }
 }

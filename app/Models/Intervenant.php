@@ -25,4 +25,9 @@ class Intervenant extends Model
     public function partenaire () {
         return $this->belongsTo(Partenaire::class, 'part_id');
     }
+
+    public function intervenantsServices() {
+        return $this->belongsToMany(Service::class, 'details_services_intervenants', 'intervenant_id', 'service_id')->withPivot('satut', 'remarque');
+        // ->using(DetailsServicesIntervenant::class);
+    }
 }

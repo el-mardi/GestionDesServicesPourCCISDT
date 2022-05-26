@@ -23,7 +23,7 @@ class CreateDemandeAdhesionsTable extends Migration
             $table->unsignedBigInteger('res_id');
             $table->unsignedBigInteger('pack_id');
             $table->unsignedBigInteger('fonc_id');
-            $table->unsignedBigInteger('rep_id');
+            $table->unsignedBigInteger('rep_id')->nullable();
 
             $table->foreign('res_id')->references('res_id')->on('ressortissants');
             $table->foreign('pack_id')->references('pack_id')->on('packs');

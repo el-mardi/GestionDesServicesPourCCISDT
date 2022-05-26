@@ -16,16 +16,17 @@ class CreateDemandeServicesTable extends Migration
         Schema::create('demande_services', function (Blueprint $table) {
             $table->bigIncrements('dem_serv_id');
             $table->string('num_contrat_accom');
+            $table->string('type_demande');
             $table->date('date_debut');
             $table->date('date_fin');
-            $table->string('duree');
+            // $table->integer('duree')->nullable();
             $table->string('province');
-            $table->text('remarque');
+            $table->text('remarque')->nullable()->change();
             
             $table->unsignedBigInteger('res_id');
             $table->unsignedBigInteger('service_id');
             $table->unsignedBigInteger('fonc_id');
-            $table->unsignedBigInteger('rep_id');
+            $table->unsignedBigInteger('rep_id')->nullable();
 
             $table->foreign('res_id')->references('res_id')->on('ressortissants');
             $table->foreign('service_id')->references('service_id')->on('services');

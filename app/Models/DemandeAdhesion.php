@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Representant;
+use App\Models\Fonctionnaire;
+use App\Models\Ressortissant;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DemandeAdhesion extends Model
 {
@@ -24,4 +27,18 @@ class DemandeAdhesion extends Model
         'rep_id',
 
     ];
+
+
+    public function fonctionnaire() {
+        return $this->belongsTo(Fonctionnaire::class, 'fonc_id');
+    }
+
+    public function representant() {
+        return $this->belongsTo(Representant::class, 'rep_id');
+    }
+    
+    public function ressortissant() {
+        return $this->belongsTo(Ressortissant::class, 'res_id');
+    }
+    
 }

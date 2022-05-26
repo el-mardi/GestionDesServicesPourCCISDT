@@ -14,7 +14,7 @@ class JuridiqueForme extends Model
     protected $primaryKey = 'formeJur_id';
 
     protected $fillable = [
-       'code_formeJur',
+       'code_forme',
        'formeJur',
     ];
     

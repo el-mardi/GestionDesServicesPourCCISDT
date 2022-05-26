@@ -12,9 +12,9 @@ class DetailsServicesIntervenant extends Model
     protected $primaryKey = 'service_intervenant_id';
 
     protected $fillable= [
-        'service',
-        'intervenant',
-        'status',
+        'service_id',
+        'intervenant_id',
+        'satut',
         'remarque',
     ];
 }

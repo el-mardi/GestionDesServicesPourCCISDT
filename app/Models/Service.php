@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Pack;
 use App\Models\Intervenant;
 use App\Models\Fonctionnaire;
+use App\Models\DemandeService;
 use App\Models\TypesIntervention;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -19,7 +20,7 @@ class Service extends Model
         'code_service',
         'service',
         'description',
-        'periodicite',
+        // 'periodicite',
         'cible',
         'lieu_prestation',
         'tarif',
@@ -41,12 +42,21 @@ class Service extends Model
         return $this->belongsTo(Fonctionnaire::class, 'resp_id');
     }
 
-    public function intervenants() {
-        return $this->belongsToMany(Intervenant::class, 'details_services_intervenants', 'service_id', 'intervenant_id');
-    }
-
     public function packs() {
         return $this->belongsToMany(Pack::class, 'details_services_packs', 'service_id', 'pack_id');
     }
+
+    // public function demandeService() {
+    //     return $this->belongsToMany(DemandeService::class, 'service_id');
+    // } USE PIVOT
+
+    public function servicesIntervenants() {
+
+        return $this->belongsToMany(Intervenant::class, 'details_services_intervenants', 'service_id','intervenant_id')->withPivot('satut', 'remarque');
+        // ->using(DetailsServicesIntervenant::class);
+    }
     
+    // public function demandeAdhesion() {
+    //     return $this->belongsToMany(demandeAdhesion::class, 'pivotTable', 'id', 'id');
+    // }
 }

@@ -18,18 +18,18 @@ class CreateServicesTable extends Migration
             $table->string('code_service')->unique();
             $table->string('service');
             $table->string('description');
-            $table->string('periodicite');
+            // $table->string('periodicite');
             $table->string('cible');
             $table->string('lieu_prestation');
             $table->float('tarif');
             $table->string('ressource_service');
             $table->boolean('etat_service');
             $table->string('motif_etat_service');
-            $table->string('documentation');
-            $table->string('action_communication');
-            $table->string('ramarque');
+            $table->string('documentation')->nullable();
+            $table->string('action_communication')->nullable();
+            $table->string('remarque');
             $table->unsignedBigInteger('type_id');
-            $table->unsignedBigInteger('resp_id');
+            $table->unsignedBigInteger('resp_id')->nullable();
 
             $table->foreign('type_id')->references('type_id')->on('types_interventions');
             $table->foreign('resp_id')->references('fonc_id')->on('fonctionnaires');

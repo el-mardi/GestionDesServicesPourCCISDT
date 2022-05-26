@@ -18,7 +18,7 @@ class CreateDetailsServicesIntervenantsTable extends Migration
             $table->unsignedBigInteger('service_id');
             $table->unsignedBigInteger('intervenant_id');
             $table->boolean('satut');
-            $table->text('remarque');
+            $table->text('remarque')->nullable()->change();
 
             $table->foreign('service_id')->references('service_id')->on('services');
             $table->foreign('intervenant_id')->references('intervenant_id')->on('intervenants');
