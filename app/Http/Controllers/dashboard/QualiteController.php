@@ -102,7 +102,6 @@ class QualiteController extends Controller
     {
         $res = Ressortissant::where('qualite_id', '=', $id)->first();
         if ($res == null){
-        
             $dom = Qualite::where('qualite_id', '=', $id)->delete();
             return redirect()->back()->with('success', "La qualité été supprimer avec success");
 

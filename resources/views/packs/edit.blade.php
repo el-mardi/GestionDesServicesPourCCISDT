@@ -19,8 +19,8 @@
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('code') }}</span>
     @endif
 
-    <label for="tarif" class="text-gray-700 mt-5 mb-0">Nom du tarif :</label>
-    <input id="tarif" name="tarif" type="number" placeholder="Nom du tarif " class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('tarif') border-pink-600  placeholder:text-pink-600 @enderror " value="{{ old('tarif', $pack->pack_tarif) }}" />
+    <label for="tarif" class="text-gray-700 mt-5 mb-0">Tarif :</label>
+    <input id="tarif" name="tarif" type="number" placeholder="Tarif " class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('tarif') border-pink-600  placeholder:text-pink-600 @enderror " value="{{ old('tarif', $pack->pack_tarif) }}" />
      @if ($errors->has('tarif'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('tarif') }}</span>
     @endif
@@ -39,11 +39,11 @@
     <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('statut') }}</span>
     @endif
     
-    <label for="selectservice" class="text-gray-700 mt-5 mb-0">List des services:</label>
+    <label for="selectservice" class="text-gray-700 mt-5 mb-0">List des actions:</label>
     <table class="border-collapse border border-blue-400 w-8/12 mx-auto mt-3">
         <thead class="bg-blue-300">
           <tr>
-            <th class="">Service</th>
+            <th class="">Action</th>
             <th class="">Code</th>
             <th class=" w-2/12">Supprimer</th>
           </tr>
@@ -59,9 +59,9 @@
         </tbody>
     </table>
 
-    <label for="selectservice" class="text-gray-700 mt-5 mb-0">Service:</label>
+    <label for="selectservice" class="text-gray-700 mt-5 mb-0">Action:</label>
     <select name="selectservice" id="selectservice" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('selectservice') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('selectservice') }}" />
-        <option value="">Secteur</option>
+        <option value="">Action</option>
         @foreach ($services as $service)
             <option value="{{$service->service_id}}">{{$service->service}}</option>
         @endforeach
@@ -73,7 +73,7 @@
     <table class="border-separate border border-slate-400 w-8/12 mx-auto mt-5">
         <thead>
           <tr>
-            <th class="border border-slate-300 ">Service</th>
+            <th class="border border-slate-300 ">Action</th>
             <th class="border border-slate-300  w-2/12">Supprimer</th>
           </tr>
         </thead>
@@ -81,7 +81,7 @@
         </tbody>
     </table>
 
-    <button type="submit" class="mx-auto p-2 m-5 bg-indigo-400 rounded-md  w-fit hover:cursor-pointer border border-indigo-500 hover:bg-inherit hover:text-indigo-600 hover:border-indigo-600">Créer une activité</button>
+    <button type="submit" class="mx-auto p-2 m-5 bg-indigo-400 rounded-md  w-fit hover:cursor-pointer border border-indigo-500 hover:bg-inherit hover:text-indigo-600 hover:border-indigo-600">Modifier le pack</button>
 
 </form>
 

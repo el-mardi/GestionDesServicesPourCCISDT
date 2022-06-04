@@ -7,8 +7,8 @@
     <thead class="bg-blue-300">
       <tr class="">
         <th class="p-2 border border-indigo-300" >Type</th>
-        <th class="p-2 border border-indigo-300" >Le nom de service</th>
-        <th class="p-2 border border-indigo-300" >Code de service</th>
+        <th class="p-2 border border-indigo-300" >Le nom d'action</th>
+        <th class="p-2 border border-indigo-300" >Code d'action</th>
         <th class="p-2 border border-indigo-300" >Tarif</th>
         <th class="p-2 border border-indigo-300" >Etat</th>
         <th class="p-2 border border-indigo-300" >Résponsable</th>

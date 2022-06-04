@@ -14,24 +14,10 @@
             @method('PUT')
             <!-- Old -->
            <div class=" mb-5 border rounded-md shadow-sm p-3">
-                <div>
-                    <x-label for="oldUsername" :value="__('Courant Username')" />
-                    <x-input id="oldUsername" class="block mt-1 w-full" type="text" name="oldUsername" :value="old('oldUsername')" required  autocomplete="off"/>
-                </div>
 
-                <div class="mt-4">
-                    <x-label for="oldPassword" :value="__('Courant Mot de passe')" />
-
-                    <x-input id="oldPassword" class="block mt-1 w-full"
-                                    type="Password"
-                                    name="oldPassword"
-                                    required />
-                </div>
-
-                <div class="mt-4 pt-2 border-t-4">
-                    <x-label for="newusername" :value="__('Username')" />
-    
-                    <x-input id="newusername" class="block mt-1 w-full" type="text" name="newusername" :value="old('newusername')" required autocomplete="off"/>
+                <div class="mt-2 pt-2 ">
+                    <x-label for="username" :value="__('Username')" />
+                    <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" autocomplete="off"/>
                 </div>
     
                  <!-- Password -->
@@ -41,7 +27,7 @@
                 <x-input id="password" class="block mt-1 w-full"
                                 type="password"
                                 name="password"
-                                required  />
+                                  />
             </div>
 
             <!-- Confirm Password -->
@@ -50,7 +36,7 @@
 
                 <x-input id="password_confirmation" class="block mt-1 w-full"
                                 type="password"
-                                name="password_confirmation" required />
+                                name="password_confirmation" />
             </div>
 
            </div>
@@ -78,8 +64,9 @@
 
                   <!-- Sexe -->
             <div class="mt-4">
-                <x-label for="sexe" :value="__('Sexe')" />
 
+                
+                <x-label for="sexe" :value="__('Sexe')" />
                 <select name="sexe" id="sexe" class='block w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' >
                     @if ($fonctionnaire->sexe == "H")     
                     <option value="H">Homme</option>
@@ -96,7 +83,7 @@
               <div class="mt-4">
                 <x-label for="admin" :value="__('Admin')" />
 
-                <select name="sexe" id="sexe" class='block w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' >
+                <select name="admin" id="admin" class='block w-full rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50' >
                     @if ($fonctionnaire->admin == 1)
                         <option value="1">Admin</option>
                         @else

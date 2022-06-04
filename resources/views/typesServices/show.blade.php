@@ -2,12 +2,12 @@
 
 @section('dashboard')
     
-<a href="{{route('services.create')}}" class=" p-2 bg-indigo-200 rounded-md shadow-lg w-fit hover:cursor-pointer hover:bg-indigo-300">Ajouter des services</a>
+<a href="{{route('services.create')}}" class=" p-2 bg-indigo-200 rounded-md shadow-lg w-fit hover:cursor-pointer hover:bg-indigo-300">Ajouter des actions</a>
 <table class="border-collapse text-sm mt-5 mx-auto">
     <thead class="bg-green-300">
       <tr class="">
-        <th class="p-2 border border-green-300" >Le nom de service</th>
-        <th class="p-2 border border-green-300" >Code de service</th>
+        <th class="p-2 border border-green-300" >Le nom d'action</th>
+        <th class="p-2 border border-green-300" >Code d'action</th>
         <th class="p-2 border border-green-300" >Tarif</th>
         <th class="p-2 border border-green-300" >Etat</th>
         <th class="p-2 border border-green-300" >Résponsable</th>
@@ -34,7 +34,12 @@
                     Disactivé
                 @endif
             </td>
-            <td  class="p-2 border border-green-300" >{{$service->fonctionnaire->nom }} {{$service->fonctionnaire->prenom}}</td>
+            <td  class="p-2 border border-green-300" >
+              @isset($service->fonctionnaire->nom)
+              {{$service->fonctionnaire->nom }} {{$service->fonctionnaire->prenom}}
+                  
+              @endisset
+            </td>
 
             <td class="p-2 border border-green-300 text-center" ><a href="/dashboard/services/{{$service->service_id}}"><i class="fa-solid fa-file-lines fa-lg" style="color: blue"></i></a></td>
             <td class="p-2 border border-green-300 text-center" ><a href="/dashboard/services/{{$service->service_id}}/edit"><i class="fa-solid fa-file-pen fa-lg" style="color: green"></i></a></td>

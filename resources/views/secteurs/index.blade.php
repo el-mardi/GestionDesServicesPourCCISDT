@@ -23,14 +23,14 @@
           @endforeach
         </tr>
 
-        <tr class="">
+        {{-- <tr class="">
           <th class="p-2 border border-r border-indigo-400" >Les activités du secteur</th>
             @foreach ($secteur['activite'] as $activite)
               @isset($activite)
                   <td  class="p-1 border border-indigo-400" >{{$activite->activite}}</td>
               @endisset
             @endforeach
-        </tr>   
+        </tr>    --}}
 
 
     </thead>

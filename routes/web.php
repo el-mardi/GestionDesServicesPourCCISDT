@@ -83,6 +83,12 @@ Route::group(['middleware' => 'IsAdmin'], function() {
 
 // PDF ROUTES
     Route::get('fiche_res/{id}', [PdfController::class, 'fiche_res'])->name('fiche_res');
+    Route::get('action_effectue/{id}', [PdfController::class, 'action_effectue'])->name('action_effectue');
+    Route::get('contratAccompagnement/{id}', [PdfController::class, 'contratAccompagnement'])->name('contratAccompagnement');
+    Route::get('orientation/{id}', [PdfController::class, 'orientation']);
+    Route::get('documents/{action}/{id}', [PdfController::class, 'documents']);
+    Route::get('adhesion/{id}', [PdfController::class, 'adhesion']);
+
 
 // Ajax Routes 
 Route::post('/getservice', [AjaxController::class, 'getservice'])->name('getservice');

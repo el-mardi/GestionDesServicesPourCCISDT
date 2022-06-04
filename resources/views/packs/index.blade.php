@@ -41,7 +41,11 @@
             
             <td class="p-3 border border-indigo-300 text-center" ><a href="{{route('packs.edit', $pack->pack_id)}}"><i class="fa-solid fa-file-pen fa-lg" style="color: green"></i></a></td>
             @if (Auth::user()->admin === 1)
-            <th class="p-3 border border-indigo-300" ><i class="fa-solid fa-trash-can" style="color: red"></i></th>
+            <th class="p-3 border border-indigo-300" > <form action="{{route('packs.destroy',$pack->pack_id)}}" method="POST"   onsubmit="delete_form(event, 'pack')">
+              @csrf
+              @method('DELETE')
+              <button type="submit" ><i class="fa-solid fa-trash-can" style="color: red"></i></button>
+              </form></th>
             @endif
         </tr>
         
@@ -51,17 +55,17 @@
     <table class="border-collapse  text-sm mt-3 mx-auto">
       <thead>
         <tr>
-          <th  class="p-3 border border-indigo-300">Service</th>
-          <th  class="p-3 border border-indigo-300">Code du service</th>
+          <th  class="p-3 border border-indigo-300">Action</th>
+          <th  class="p-3 border border-indigo-300">Code d'action</th>
         </tr>
       </thead>
       <tbody>
+        @foreach ($pack->services as $service)
         <tr  class="odd:bg-blue-50 even:bg-blue-100">
-          @foreach ($pack->services as $service)
               <td class="p-3 border border-indigo-300">{{ $service->service }} </td>
               <td class="p-3 border border-indigo-300">{{ $service->code_service }} </td>
-          @endforeach
-        </tr>
+            </tr>
+            @endforeach
       </tbody>
     </table>
 </div>

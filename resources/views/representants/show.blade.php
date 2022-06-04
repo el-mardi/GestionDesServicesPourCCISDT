@@ -28,6 +28,8 @@
 
 </table>
 
+<h1 class="font-bold w-fit border-b border-black  mt-10">LISTE DES OPÉRATIONS DANS LESQUELLES Il ETAIT REPRÉSENTANT :</h1>
+
 <div class= "mt-5">
     
     <table class="w-full text-left mt-3 cursor-pointer">
@@ -42,7 +44,7 @@
             @foreach ($services as $service)
             <tr class="odd:bg-orange-50 even:bg-orange-100 border border-orange-300">
                 <td class="p-1 ">{{$service->type_demande}}</td>
-                <td class="p-1 ">{{$service->num_contrat_accom}}</td>
+                <td class="p-1 ">{{$service->num_contrat_accom}}/{{$service->date_debut}}</td>
                 <td class="p-1 ">{{$service->date_debut}}</td>
                 {{-- <td class="p-1 ">{{$service->province}}</td> --}}
                 <td class="p-1 ">{{$service->ressortissant->nom}} {{$service->ressortissant->prenom}} <span class="text-md text-slate-700"> ({{$service->ressortissant->cin}})</span></td>
@@ -66,7 +68,7 @@
         <tbody>
             @foreach ($adhesions as $adhesion)
             <tr class="odd:bg-green-50 even:bg-green-100 border border-green-300">
-                <td class="p-2 border">{{$adhesion->num_contrat_adh}}</td>
+                <td class="p-2 border">{{$adhesion->num_contrat_adh}}/{{$adhesion->date_debut}}</td>
                 <td class="p-2 border">{{$adhesion->date_debut}}</td>
                 {{-- <td class="p-2 border">{{$adhesion->province}}</td> --}}
                 <td class="p-1 ">{{$adhesion->ressortissant->nom}} {{$adhesion->ressortissant->prenom}} <span class="text-md text-slate-700"> ({{$adhesion->ressortissant->cin}})</span></td>

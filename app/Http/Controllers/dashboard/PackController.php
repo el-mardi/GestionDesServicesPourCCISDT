@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Models\Pack;
 use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Models\DemandeAdhesion;
 use Illuminate\Validation\Rule;
 use App\Models\DetailsServicesPack;
 use App\Http\Controllers\Controller;
@@ -186,6 +187,15 @@ class PackController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $adhesion = DemandeAdhesion::where('pack_id', '=', $id)->first();
+        if (!empty($adhesion)) {
+            return  redirect()->back()->with('error', "Impossible! Le pack est utilisé dans une contrat adhesion. ");
+        } else {
+            DetailsServicesPack::where('pack_id', '=', $id)->delete();
+            Pack::where('pack_id', '=', $id)->delete();
+           return  redirect()->back()->with('success', "Le pack  ete supprimer avec success ");
+
+        }
+        
     }
 }

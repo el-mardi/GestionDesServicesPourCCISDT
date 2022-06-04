@@ -18,7 +18,7 @@
         
 
     </head>
-    <body class="font-sans antialiased bg-slate-50">
+    <body class="font-sans antialiased bg-white">
         <div class="min-h-screen shadow-sm">
             @include('layouts.navigation')
 
@@ -37,5 +37,7 @@
         
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
         <script src="{{ mix('/js/app.js') }}"></script>   
+
+       
     </body>
 </html>

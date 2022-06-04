@@ -18,8 +18,8 @@
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('code') }}</span>
     @endif
 
-    <label for="tarif" class="text-gray-700 mt-5 mb-0">Nom du tarif :</label>
-    <input id="tarif" name="tarif" type="number" placeholder="Nom du tarif " class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('tarif') border-pink-600  placeholder:text-pink-600 @enderror " value="{{ old('tarif') }}" />
+    <label for="tarif" class="text-gray-700 mt-5 mb-0">Tarif :</label>
+    <input id="tarif" name="tarif" type="number" placeholder="Tarif " class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('tarif') border-pink-600  placeholder:text-pink-600 @enderror " value="{{ old('tarif') }}" />
      @if ($errors->has('tarif'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('tarif') }}</span>
     @endif
@@ -34,9 +34,9 @@
     @endif
 
 
-    <label for="selectservice" class="text-gray-700 mt-5 mb-0">Service:</label>
+    <label for="selectservice" class="text-gray-700 mt-5 mb-0">Action:</label>
     <select name="selectservice" id="selectservice" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('selectservice') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('selectservice') }}" />
-        <option value="">Secteur</option>
+        <option value="">Action</option>
         @foreach ($services as $service)
             <option value="{{$service->service_id}}">{{$service->service}}</option>
         @endforeach

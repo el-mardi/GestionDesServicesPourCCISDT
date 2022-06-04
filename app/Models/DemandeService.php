@@ -23,7 +23,7 @@ class DemandeService extends Model
         'date_fin',
         'province',
         'remarque',
-        // 'duree',
+        'duree',
         'res_id',
         'service_id',
         'fonc_id',

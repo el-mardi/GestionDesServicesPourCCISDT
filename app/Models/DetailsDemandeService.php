@@ -28,4 +28,9 @@ class DemandeService extends Model
 
     ];
 
+    public function ressortissant (){
+        return $this->belongsTo(Ressortissant::class, 'res_id');
+    }
+
+    
 }

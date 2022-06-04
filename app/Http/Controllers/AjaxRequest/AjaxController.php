@@ -102,7 +102,7 @@ class AjaxController extends Controller
         $res= Domaine::where('sect_id', '=', $secteur)
         ->get();
 
-        echo "<option>Sélectionner domaine</option>";
+        echo "<option value=''>Sélectionner domaine</option>";
         foreach ($res as $domaine){
             
             $output = "<option value='$domaine->dom_id'> $domaine->domaine</option>   
@@ -136,17 +136,17 @@ class AjaxController extends Controller
             }
             foreach ($representants as $representant){
             echo "
-            <tr class='bg-slate-100 hover:cursor-pointer hover:bg-slate-300 border border-indigo-400'>
-            <td  class='p-1 '>{$representant->nom} {$representant->prenom}</td>
-            <td  class='p-1 '>{$representant->cin}</td>
-            <td  class='p-1 '>________________</td>
-            <td  class='p-1 '>{$representant->qualite->qualite}</td>
-            <td  class='p-1 '>{$representant->tel}</td>
-            <td  class='p-1 '>{$representant->mail}</td>
-            <td  class='p-1 '>{$representant->adresse}</td>
-            <td class=' text-center' ><a href='representants/".$representant->rep_id."'><i class='fa-solid fa-file-lines fa-lg' style='color: blue'></i></a></td>
+            <tr class=' bg-slate-100 hover:cursor-pointer hover:bg-slate-200 border border-slate-400'>
+            <td  class='p-1'>{$representant->nom} {$representant->prenom}</td>
+            <td  class='p-1'>{$representant->cin}</td>
+            <td  class='p-1'>________________</td>
+            <td  class='p-1'>{$representant->qualite->qualite}</td>
+            <td  class='p-1'>{$representant->tel}</td>
+            <td  class='p-1'>{$representant->mail}</td>
+            <td  class='p-1'>{$representant->adresse}</td>
+            <td class=' text-center' ><a href='/dashboard/representants/".$representant->rep_id."'><i class='fa-solid fa-file-lines fa-lg' style='color: blue'></i></a></td>
 
-            <td class=' text-center' ><a href='representants/".$representant->rep_id."/edit'><i class='fa-solid fa-file-pen fa-lg' style='color: green'></i></a></td>
+            <td class=' text-center' ><a href='/dashboard/representants/".$representant->rep_id."/edit'><i class='fa-solid fa-file-pen fa-lg' style='color: green'></i></a></td>
            
             </tr>
             ";
@@ -178,7 +178,7 @@ class AjaxController extends Controller
             }
                 foreach ($ressortissants as $ressortissant){
                     echo "
-                    <tr class='bg-slate-100 hover:cursor-pointer hover:bg-slate-300 border border-indigo-400'>
+                    <tr class='bg-slate-50 hover:cursor-pointer hover:bg-slate-200 border border-slate-400'>
                     <td  class='p-1'>{$ressortissant->nom} {$ressortissant->prenom}</td>
                     <td  class='p-1 '>{$ressortissant->cin}</td>
                     <td  class='p-1 '>{$ressortissant->num_fiche}</td>
@@ -186,9 +186,9 @@ class AjaxController extends Controller
                     <td  class='p-1 '>{$ressortissant->tel}</td>
                     <td  class='p-1 '>{$ressortissant->mail}</td>
                     <td  class='p-1 '>{$ressortissant->adresse}</td>
-                    <td class=' text-center ' ><a href='ressortissant/".$ressortissant->res_id."'><i class='fa-solid fa-file-lines fa-lg' style='color: blue'></i></a></td>
+                    <td class=' text-center ' ><a href='/dashboard/ressortissant/".$ressortissant->res_id."'><i class='fa-solid fa-file-lines fa-lg' style='color: blue'></i></a></td>
 
-                    <td class=' text-center ' ><a href='ressortissant/".$ressortissant->res_id."/edit'><i class='fa-solid fa-file-pen fa-lg' style='color: green'></i></a></td>
+                    <td class=' text-center ' ><a href='/dashboard/ressortissant/".$ressortissant->res_id."/edit'><i class='fa-solid fa-file-pen fa-lg' style='color: green'></i></a></td>
                 
                     </tr>
                     ";

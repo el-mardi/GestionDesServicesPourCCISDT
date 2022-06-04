@@ -10,7 +10,7 @@ var nFiche = 0;
             nFiche = 1;
         } else {
             $('#search-select').prop('disabled', false);
-            $('#cinSearch').attr('placeholder', 'Rechercher en utilisant  CIN');
+            $('#cinSearch').attr('placeholder', 'Rechercher en utilisant le N° Pièce d’identité');
             nFiche = 0;
         }
     })

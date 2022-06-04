@@ -7,7 +7,7 @@
     <thead class="bg-blue-300">
       <tr class="">
         <th class="p-2 border border-indigo-300" >N fiche</th>
-        <th class="p-2 border border-indigo-300" >Nom et Prenom</th>
+        <th class="p-2 border border-indigo-300" >Nom et Prénom</th>
         <th class="p-2 border border-indigo-300" >Cin</th>
         <th class="p-2 border border-indigo-300" >Qualité</th>
         <th class="p-2 border border-indigo-300" >N Contrat d'accompagmement</th>
@@ -29,13 +29,22 @@
             <td  class="p-2 border-r border-indigo-300" >{{$ressortissant->cin}}</td>
             <td  class="p-2 border-r border-indigo-300" >{{$ressortissant->qualite->qualite}}</td>
             @if(isset( $ressortissant->dernier_contrat_accom ))
-            <td  class="p-2 border-r border-indigo-300" >{{$ressortissant->dernier_contrat_accom}}/{{$ressortissant->date_debut->date_debut}}</td>
+            <td  class="p-2 border-r border-indigo-300" >
+              {{$ressortissant->dernier_contrat_accom}}/
+              {{date('Y', strtotime($ressortissant->date_debut->date_debut))}}</td>
             @else
               <td  class="p-2 border-r border-indigo-300 text-center" >--</td>
             @endif
             
             @if (isset($ressortissant->dernier_contrat_adh))
-              <td  class="p-2 border-r border-indigo-300" >{{$ressortissant->dernier_contrat_adh}}/{{$ressortissant->date_debut_adh->date_debut}}</td>
+            @if(isset($ressortissant->date_debut_adh))
+            <td  class="p-2 border-r border-indigo-300" >
+                {{$ressortissant->dernier_contrat_adh}}/
+                {{date('Y', strtotime($ressortissant->date_debut_adh->date_debut))}}
+              </td>
+                @else
+            <td  class="p-2 border-r border-indigo-300 text-center" >-- </td>
+                @endif
             @else
               <td  class="p-2 border-r border-indigo-300 text-center" >--</td>
             @endif

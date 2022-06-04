@@ -1,52 +1,52 @@
 @extends('dashboard')
 
 @section('dashboard')
-{{-- 
-<div class="class="grid gap-x-8 gap-y-4 grid-cols-2>
-    
-</div>
-<table class="w-full text-left mt-5 mb-5">
-   <tr class="border">
-       <td>Nom et Prénom :  </td> <th class="p-2">{{$rep->nom}} {{$rep->prenom}} </th>
-       <td>Numero de piéce d'identité : </td> <th class="p-2"> {{$rep->cin}} </th>
-   </tr>
-   
-<tr class="border">
-    <td>Nationalité :  </td> <th class="p-2">{{$rep->nationalite}} </th>
-    <td>Sexe : </td> <th class="p-2">{{$rep->sexe}} </th>
-</tr>
-<tr class="border">
-    <td>Adresse :  </td> <th class="p-2">{{$rep->adresse}} </th>
-    <td>Tél :  </td> <th class="p-2">{{$rep->tel}} </th>
-</tr>
-<tr class="border">
-</tr>
-<tr class="border">
-    <td>Mail : </td> <th class="p-2">{{$rep->mail}} </th>
-    <td>Qualité : </td> <th class="p-2"> {{$rep->qualite->qualite}} </th>
-</tr>
 
+<h2>Responsable de:</h2>
+<div class= "mt-5">
+    <table class=" text-left mt-3 cursor-pointer w-2/4 mx-auto">
+        <thead class="bg-blue-200">
+            <th class="p-1">service</th>
+            <th class="p-1">Code service</th>
+        </thead>
+        <tbody>
+            @foreach ($responsable as $resp)
+            <tr class="odd:bg-blue-50 even:bg-blue-100 border border-blue-300">
+                <td class="p-1 ">
+                    {{$resp->service}}
+                </td>
+                <td class="p-1 ">
+                    {{$resp->code_service}}
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
 </table>
 
 <div class= "mt-5">
-    
+    <h2>Liste contrats </h2>
     <table class="w-full text-left mt-3 cursor-pointer">
         <thead class="bg-orange-200">
             <th class="p-1">Type de demande</th>
             <th class="p-1">N contrat accompagnement</th>
             <th class="p-1">Date</th>
             <th class="p-1">Ressortissant (Cin) </th>
-            <th class="p-1">Fonctionnaire</th>
+            <th class="p-1">Repressentant</th>
         </thead>
         <tbody>
             @foreach ($services as $service)
             <tr class="odd:bg-orange-50 even:bg-orange-100 border border-orange-300">
                 <td class="p-1 ">{{$service->type_demande}}</td>
-                <td class="p-1 ">{{$service->num_contrat_accom}}</td>
+                <td class="p-1 w-6">{{$service->num_contrat_accom}}/{{$service->date_debut}}</td>
                 <td class="p-1 ">{{$service->date_debut}}</td>
                 {{-- <td class="p-1 ">{{$service->province}}</td> --}}
                 <td class="p-1 ">{{$service->ressortissant->nom}} {{$service->ressortissant->prenom}} <span class="text-md text-slate-700"> ({{$service->ressortissant->cin}})</span></td>
-                <td class="p-1 ">{{$service->fonctionnaire->nom}} {{$service->fonctionnaire->prenom}}</td> 
+                <td class="p-1 ">
+                    @isset($service->representant->nom)
+                    {{$service->representant->nom}} {{$service->representant->prenom}} <span class="text-md text-slate-700">({{$service->representant->cin}}) </span>
+                    @endisset
+                
+                </td> 
             </tr>
             @endforeach
         </tbody>
@@ -66,15 +66,20 @@
         <tbody>
             @foreach ($adhesions as $adhesion)
             <tr class="odd:bg-green-50 even:bg-green-100 border border-green-300">
-                <td class="p-2 border">{{$adhesion->num_contrat_adh}}</td>
+                <td class="p-2 border">{{$adhesion->num_contrat_adh}}/{{$adhesion->date_debut}}</td>
                 <td class="p-2 border">{{$adhesion->date_debut}}</td>
                 {{-- <td class="p-2 border">{{$adhesion->province}}</td> --}}
                 <td class="p-1 ">{{$adhesion->ressortissant->nom}} {{$adhesion->ressortissant->prenom}} <span class="text-md text-slate-700"> ({{$adhesion->ressortissant->cin}})</span></td>
-                <td class="p-2 border">{{$adhesion->fonctionnaire->nom}} {{$adhesion->fonctionnaire->prenom}}</td>
+                <td class="p-1 ">
+                    @isset($adhesion->representant->nom)
+                    {{$adhesion->representant->nom}} {{$adhesion->representant->prenom}} <span class="text-md text-slate-700">({{$adhesion->representant->cin}}) </span>
+                    @endisset
+                
+                </td> 
             </tr>
             @endforeach
         </tbody>
     </table>
-</div> --}}
+</div>
 
 @endsection

@@ -23,11 +23,6 @@
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('description') }}</span>
     @endif
 
-    <label for="periodicite" class="text-gray-700 mt-5 mb-0">Periodicité: </label>
-    <input id="periodicite" name="periodicite" type="number" placeholder="Periodicité du service" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('periodicite') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('periodicite', $service->periodicite) }}"/>
-    @if ($errors->has('periodicite'))
-        <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('periodicite') }}</span>
-    @endif
 
     <label for="cible" class="text-gray-700 mt-5 mb-0">Public cible: </label>
     <input id="cible" name="cible" type="text" placeholder="Le public ciblé" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('cible') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('cible', $service->cible) }}"/>
@@ -35,7 +30,7 @@
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('cible') }}</span>
     @endif
     
-    <label for="type_service" class="text-gray-700 mt-5 mb-0">Type de service:</label>
+    <label for="type_service" class="text-gray-700 mt-5 mb-0">Service:</label>
     <select name="type_service" id="type_service" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('type_service') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('type_service') }}" required />
         <option value="{{$service->type_id}}">{{$service->typesIntervention->type}}</option>
     @foreach ($types as $type)

@@ -6,12 +6,12 @@
 <table class="border-collapse  text-sm mt-5 mx-auto">
     <thead class="bg-blue-300">
       <tr class="">
-        <th class="p-2 border border-indigo-300" >Type des services</th>
+        <th class="p-2 border border-indigo-300" >Services</th>
         <th class="p-2 border border-indigo-300" >Code </th>
         <th class="p-2 border border-indigo-300" >Remarque</th>
 
         
-        <th class="p-2 border border-indigo-300" >Consulter les services </th>
+        <th class="p-2 border border-indigo-300" >Consulter les actions </th>
         <th class="p-2 border border-indigo-300" >Modifer</th>
         @if (Auth::user()->admin === 1)
         <th class="p-2 border border-indigo-300" >Supprimer</th>

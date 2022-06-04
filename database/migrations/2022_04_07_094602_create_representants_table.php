@@ -20,7 +20,7 @@ class CreateRepresentantsTable extends Migration
             $table->string('prenom');
             $table->string('nationalite');
             $table->string('sexe');
-            $table->integer('tel');
+            $table->string('tel');
             $table->string('mail');
             $table->string('adresse');
             $table->unsignedBigInteger('qualite_id');

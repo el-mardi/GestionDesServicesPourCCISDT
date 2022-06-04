@@ -20,7 +20,7 @@ class DemandeAdhesion extends Model
         'num_recu',
         'date_debut',
         'date_fin',
-        'periodicite',
+        'province',
         'res_id',
         'pack_id',
         'fonc_id',

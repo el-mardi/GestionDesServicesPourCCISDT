@@ -34,7 +34,7 @@ foreach ($ressortissants as $ressortissant) {
     $ressortissant['date_debut_adh'] = DemandeAdhesion::where('num_contrat_adh', '=', $ressortissant->dernier_contrat_adh)->first('date_debut');
       
     }
-    // dd($ressortissant);
+    // dd($ressortissants[0]->date_debut_adh->date_debut);
       return view('ressortissant.index', ['ressortissants' => $ressortissants]);
     }
 
@@ -73,6 +73,9 @@ foreach ($ressortissants as $ressortissant) {
             "qualite" => "required|",
             "ice" => "required|",
             "rc" => "required|",
+            "date_rc" => "required|",
+            "lieu_rc" => "required|",
+            "id_f" => "required|",
             "fomeJur" => "required|",
             "secteur" => "required|",
             "activite" => "required|",
@@ -96,10 +99,13 @@ foreach ($ressortissants as $ressortissant) {
         'mail' => $request['mail'],
         'formation' => $request['formation'],
         'experience' => $request['experience'],
-        'img' => $request->file('img')->getClientOriginalName(),
+        'img' => "",
         'raison_social' => $request['raison_social'],
         'ice' => $request['ice'],
         'rc' => $request['rc'],
+        'date_rc' => $request['date_rc'] ,
+        'lieu_rc' => $request['lieu_rc'] ,
+        'id_f' => $request['id_f'] ,
         'patente' => $request['patente'],
         'dernier_contrat_adh' => null,
         'dernier_contrat_accom' => null,
@@ -112,9 +118,15 @@ foreach ($ressortissants as $ressortissant) {
         'formeJur_id' => $request['fomeJur'],
         ]);
 
-        if (!empty($res)) {
-            $request->file('img')->storeAs('images',  $request['cin'].'.jpg');
+        if (!empty($res) && !empty($request['img'])) {
+
+            $extension = $request->file('img')->getClientOriginalExtension();
+            $res->img =   $request['cin'].".".$extension ;
+            $res->save();
+            
+            $request->file('img')->storeAs('public/images',  $request['cin'].".".$extension);
             // $path = $request->file('img')->store('public/images');
+            // $res->img =  $request->file('img')->getClientOriginalName();
         }
 
         if (!empty($request['remarque'])) {
@@ -136,25 +148,65 @@ foreach ($ressortissants as $ressortissant) {
     {
         $ressortissant = Ressortissant::findOrFail($id);
         // dd($ressortissant);
-        
-        $ressortissant['date_dernier_contrat'] = DemandeAdhesion::where('num_contrat_adh','=', $ressortissant->dernier_contrat_adh)->first('date_debut');
+
+        $ressortissant['date_dernier_contrat_adh'] = DemandeAdhesion::where('num_contrat_adh','=', $ressortissant->dernier_contrat_adh)->first('date_debut');
+
+        $ressortissant['date_dernier_contrat_acc'] = DemandeService::where('type_demande', '=', 'c_accompagnement')->where('num_contrat_accom','=', $ressortissant->dernier_contrat_accom)->first('date_debut');
        
         $contrats = DemandeService::where('res_id', '=', $id)
                             ->where('type_demande', '=', 'c_accompagnement')
                             ->distinct('num_contrat_accom')
+                            ->orderBy('num_contrat_accom', 'DESC')
                             ->get(['num_contrat_accom', 'date_debut', 'date_fin', 'province', 'duree', 'fonc_id', 'rep_id', 'remarque' ]);
 
+                            // dd($contrats);
         $services = [];
         foreach ($contrats as $contrat) {
            $services[] = DemandeService::join('services','services.service_id', '=', 'demande_services.service_id')
+                            ->where('type_demande', '=', 'c_accompagnement')
                             ->where('num_contrat_accom', '=', $contrat->num_contrat_accom)
+                            ->orderBy('num_contrat_accom', 'DESC')
                             ->get();
         }
         
-        $orient_doc = DemandeService::join('services', 'services.service_id', '=', 'demande_services.service_id')
-        ->where('type_demande', '!=', 'c_accompagnement')
-        ->where('res_id', '=', $id)
-        ->get();
+        // Orientation
+        $contrats_or = DemandeService::where('res_id', '=', $id)
+                            ->where('type_demande', '=', 'orientation')
+                            ->distinct('num_contrat_accom')
+                            ->orderBy('num_contrat_accom', 'DESC')
+                            ->get(['num_contrat_accom', 'date_debut', 'date_fin', 'province', 'duree', 'fonc_id', 'rep_id', 'remarque' ]);
+
+         $orientations = [];
+        foreach ($contrats_or as $contrat) {
+           $orientations[] = DemandeService::join('services','services.service_id', '=', 'demande_services.service_id')
+                            ->where('type_demande', '=', 'orientation')
+                            ->where('num_contrat_accom', '=', $contrat->num_contrat_accom)
+                            ->orderBy('num_contrat_accom', 'DESC')
+                            ->get();
+        }
+
+        // Documents
+
+        $contrats_doc = DemandeService::where('res_id', '=', $id)
+                            ->where('type_demande', '=', 'documents')
+                            ->distinct('num_contrat_accom')
+                            ->orderBy('num_contrat_accom', 'DESC')
+                            ->get(['num_contrat_accom', 'date_debut', 'date_fin', 'province', 'duree', 'fonc_id', 'rep_id', 'remarque' ]);
+
+         $documents = [];
+        foreach ($contrats_doc as $contrat) {
+           $documents[] = DemandeService::join('services','services.service_id', '=', 'demande_services.service_id')
+                            ->where('type_demande', '=', 'documents')
+                            ->where('num_contrat_accom', '=', $contrat->num_contrat_accom)
+                            ->orderBy('num_contrat_accom', 'DESC')
+                            ->get();
+        }
+
+
+        // $orient_doc = DemandeService::join('services', 'services.service_id', '=', 'demande_services.service_id')
+        // ->where('type_demande', '!=', 'c_accompagnement')
+        // ->where('res_id', '=', $id)
+        // ->get();
 
         $c_adhesions = DemandeAdhesion::where('res_id', '=', $id)
                                         ->distinct('num_contrat_adh')
@@ -166,7 +218,8 @@ foreach ($ressortissants as $ressortissant) {
             ->get();
         }
 
-        return view('ressortissant.show', ['ressortissant' => $ressortissant, 'services' => $services, 'orient_doc' =>$orient_doc, 'adhesions' =>$adhesions]);
+        // dd($orientations, $documents);
+        return view('ressortissant.show', ['ressortissant' => $ressortissant, 'services' => $services, 'documents' =>$documents, 'orientations' =>$orientations, 'adhesions' =>$adhesions]);
     }
 
     /**
@@ -210,13 +263,16 @@ foreach ($ressortissants as $ressortissant) {
             "qualite" => "required|",
             "ice" => "required|",
             "rc" => "required|",
+            "date_rc" => "required|",
+            "lieu_rc" => "required|",
+            "id_f" => "required|",
             "fomeJur" => "required|",
             "secteur" => "required|",
             "activite" => "required|",
             "domaine" => "required|",
         ]);
 
-        Ressortissant::where('res_id', '=', $id)
+        $res = Ressortissant::where('res_id', '=', $id)
         ->update([
         'num_fiche' => $request['num_fiche'],
         'nom' => $request['nom'],
@@ -232,17 +288,35 @@ foreach ($ressortissants as $ressortissant) {
         'formation' => $request['formation'],
         'experience' => $request['experience'],
         // 'img' => $request->file('img')->store('public/images'),
-        'img'=> 'path',
+        // 'img'=> 'path',
         'raison_social' => $request['raison_social'],
         'ice' => $request['ice'],
         'rc' => $request['rc'],
+        'date_rc' => $request['date_rc'] ,
+        'lieu_rc' => $request['lieu_rc'] ,
+        'id_f' => $request['id_f'] ,
         'patente' => $request['patente'],
         'accompagnement' => $request['cont_accom'],
         'secteur' => $request['secteur'],
-        'act_id' => $request['activite'],
+        'activite' => $request['activite'],
         'qualite_id' => $request['qualite'],
         'formeJur_id' => $request['fomeJur'],
         ]);
+
+        if( !empty($request['img'])) {
+            // dd($request->file('img')->getClientOriginalExtension());
+            $extension = $request->file('img')->getClientOriginalExtension();
+            Ressortissant::where('res_id', '=', $id)
+                ->update([
+                    'img' =>  $request['cin'].".".$extension ,
+                ]);
+            // $res->
+            // $res->save();
+            
+            $request->file('img')->storeAs('public/images',  $request['cin'].".".$extension);
+            // $path = $request->file('img')->store('public/images');
+            // $res->img =  $request->file('img')->getClientOriginalName();
+        }
 
     return redirect()->route('ressortissant.index')->with('success','Les informations du ressortissant ont mis à jour succés ');
     

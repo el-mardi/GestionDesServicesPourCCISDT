@@ -5178,7 +5178,21 @@ $('#show_interv').click(function () {
   } else {
     interv.classList.add('class', "hidden");
     interv.classList.remove('class', "show");
-    btn.innerText = "Ajouter des intervenants au service";
+    btn.innerText = "Ajouter des Details";
+  }
+});
+$('#show_act').click(function () {
+  var interv = document.querySelector("#act_abrege");
+  var btn = document.querySelector("#show_act");
+
+  if (interv.classList.contains('hidden')) {
+    interv.classList.remove('class', "hidden");
+    interv.classList.add('class', "show");
+    btn.innerText = "Masquer";
+  } else {
+    interv.classList.add('class', "hidden");
+    interv.classList.remove('class', "show");
+    btn.innerText = "Activité abrégée (Pour la carte pro)";
   }
 });
 
@@ -5214,6 +5228,7 @@ if ($('#partenaire').length) {
     });
   });
 } ///////////////////////////////////////////////////////////////////////
+// user navigation
 
 
 $('#N_acc').on('click', function () {
@@ -5306,7 +5321,7 @@ $(document).ready(function () {
       nFiche = 1;
     } else {
       $('#search-select').prop('disabled', false);
-      $('#cinSearch').attr('placeholder', 'Rechercher en utilisant  CIN');
+      $('#cinSearch').attr('placeholder', 'Rechercher en utilisant le N° Pièce d’identité');
       nFiche = 0;
     }
   });

@@ -19,7 +19,7 @@ class CreateDemandeAdhesionsTable extends Migration
             $table->string('num_recu');
             $table->date('date_debut');
             $table->date('date_fin');
-            $table->string('periodicite');
+            $table->string('province');
             $table->unsignedBigInteger('res_id');
             $table->unsignedBigInteger('pack_id');
             $table->unsignedBigInteger('fonc_id');

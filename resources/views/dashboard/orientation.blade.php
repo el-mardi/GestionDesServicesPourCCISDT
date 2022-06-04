@@ -10,7 +10,7 @@
     <select id="selectservice"  class="toDisableIt w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('services') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('services') }}" >
 
         <option value="" >Sélectionner l'action</option>
-        @foreach ($services as $service)
+        @foreach ($action as $service)
         <option value="{{$service->service_id}}">{{$service->service}}</option>
         @endforeach
     </select>
@@ -50,7 +50,7 @@
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('province') }}</span>
     @endif
 
-    <label for="duree" class="text-gray-700 mt-5 mb-0">Durée:</label>
+    <label for="duree" class="text-gray-700 mt-5 mb-0">Durée (min):</label>
     <input id="duree" name="duree" type="number"  placeholder = "durée"  class="toDisableIt w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('duree') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('duree') }}" required/>
      @if ($errors->has('duree'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('duree') }}</span>
@@ -69,7 +69,7 @@
     <label for="remarque" class="text-gray-700 mt-5 mb-0">Remarque:</label>
     <textarea name="remarque" id="remarque" placeholder="remarques ..." class="toDisableIt h-20 w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 " value="{{ old('remarque') }}"></textarea>
 
-    <div onclick="showSubmit()" id="leDiv" class="mx-auto p-2 m-5 bg-indigo-200 rounded-md shadow-lg w-fit hover:cursor-pointer hover:bg-indigo-300">Vérifier votre contrat d'accompagnement</div>
+    <div onclick="showSubmit()" id="leDiv" class="mx-auto p-2 m-5 bg-lime-200 rounded-sm shadow-lg w-fit hover:cursor-pointer hover:bg-lime-300 border border-lime-400">Vérifier vos informations</div>
 
     <div id='createBtn' class="mx-auto" style="display: none"> 
         <button id="submit" type="submit" class='mx-auto p-2 m-5 bg-green-300 rounded-md shadow-lg w-fit hover:cursor-pointer hover:bg-green-400'>Enregistrer & Imprimer le contrat</button>  
@@ -102,7 +102,8 @@
 
 
 function showSubmit (){
-
+    
+    alert("Vérifier vos informations");
     $('#leDiv').css('display', 'none');
     $('#createBtn').css('display', 'block');
     $(".toDisableIt").prop("readonly", true);

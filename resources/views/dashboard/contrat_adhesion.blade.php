@@ -7,7 +7,7 @@
     
     <label for="num_contrat_adhesion" class="text-gray-700 mt-5 mb-0">Numero du contrat: </label>
     <input type="text" class="toDisableIt w-9/12 mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-5 "
-    value="{{$lastElement}}" disabled/>
+    value="{{$lastElement}}/{{$date}}" disabled/>
     
     <input type="hidden" name="num_contrat_adhesion" value="{{$lastElement}}">
 
@@ -78,7 +78,7 @@
     <textarea name="remarque" id="remarque" placeholder="remarques ..." class="toDisableIt h-20 w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 " value="{{ old('remarque') }}"></textarea>
 
 
-    <div onclick="showSubmit()" id="leDiv" class="mx-auto p-2 m-5 bg-indigo-200 rounded-md shadow-lg w-fit hover:cursor-pointer hover:bg-indigo-300">Vérifier votre contrat d'adhesion</div>
+    <div onclick="showSubmit()" id="leDiv" class="mx-auto p-2 m-5 bg-lime-200 rounded-sm shadow-lg w-fit hover:cursor-pointer hover:bg-lime-300 border border-lime-400">Vérifier votre contrat d'adhesion</div>
 
         <div id='createBtn' class="mx-auto" style="display: none"> 
             <button id="submit" type="submit" class='mx-auto p-2 m-5 bg-green-300 rounded-md shadow-lg w-fit hover:cursor-pointer hover:bg-green-400'>Enregistrer Imprimer le contrat</button>  
@@ -112,6 +112,7 @@
 
 function showSubmit (){
 
+    alert("Vérifier votre contrat d'adhesion");
         $('#leDiv').css('display', 'none');
         $('#createBtn').css('display', 'block');
         $(".toDisableIt").prop("readonly", true);

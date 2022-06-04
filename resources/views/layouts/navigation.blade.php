@@ -1,51 +1,48 @@
-<nav x-data="{ open: false }" class="pt-4 bg-indigo-50 shadow-md mb-5 border-b">
+<nav x-data="{ open: false }" class="pt-4 shadow-sm mb-5 bg-slate-200 ">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            <div class="flex ">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        {{-- <x-application-logo class="block h-10 w-auto fill-current text-gray-600" /> --}}
-                        <img src="{{ asset('images/logo_ccis_dt_2-removebg-preview.png') }}" 
-                            class="block h-10 w-auto fill-current text-gray-600">
-                    </a>
+                            
+                        <a href="{{route('dashboard')}}" class="block hover:text-indigo-600 hover:border-b-2 hover:border-indigo-600  text-sm   {{ request()->routeIs('dashboard') ? 'text-indigo-600 ' : 'text-slate-600' }} pb-2">
+                            <img src="{{ asset('images/logo_ccis_dt_2-removebg-preview.png') }}" 
+                            class="inline h-10 w-auto fill-current text-brown-600"> <span class="inline mx-2">GestDSR</span> 
+                        </a>
                 </div>
                 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-4 sm:mr-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')">
-                        {{ __('GestDSR') }}
-                    </x-nav-link>
-
+                <div class="hidden space-x-8 sm:-my-px sm:ml-14 sm:mr-10 sm:flex">
+                   
                     @if (Auth::user()->admin != 1 )
                     <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
-                        <a href="{{route('ressortissant.index')}}" class="m-auto {{ request()->routeIs('ressortissant.*') ? 'text-indigo-600' : 'text-slate-600' }}">
+                        <a href="{{route('ressortissant.index')}}" class="m-auto hover:text-indigo-600 hover:border-b-2 hover:border-indigo-600 text-sm   {{ request()->routeIs('ressortissant.*') ? 'text-indigo-600 border-b-2 border-indigo-600 ' : 'text-slate-600' }}">
                          RESSORTISSANT
                         </a>
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
-                        <a href="{{route('orientation')}}" class="m-auto {{ request()->routeIs('orientation') ? 'text-indigo-600' : 'text-slate-600' }}">
+                        <a href="{{route('orientation')}}" class="m-auto hover:text-indigo-600 hover:border-b-2 hover:border-indigo-600  text-sm   {{ request()->routeIs('orientation') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-600' }}">
                          ORIENTATION
                         </a>
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
-                        <a href="{{route('accompagnement')}}" class="m-auto {{ request()->routeIs('accompagnement') ? 'text-indigo-600' : 'text-slate-600' }}">
+                        <a href="{{route('accompagnement')}}" class="m-auto hover:text-indigo-600 hover:border-b-2 hover:border-indigo-600  text-sm   {{ request()->routeIs('accompagnement') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-600' }}">
                          CONTRAT D'ACCOMPAGNEMENT
                         </a>
                         
                     </div>
                     <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
-                        <a href="{{route('adhesion')}}" class="m-auto {{ request()->routeIs('adhesion') ? 'text-indigo-600' : 'text-slate-600' }}">
+                        <a href="{{route('adhesion')}}" class="m-auto hover:text-indigo-600 hover:border-b-2 hover:border-indigo-600  text-sm   {{ request()->routeIs('adhesion') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-600' }}">
                          CONTRAT D'ADHESION
                         </a>
                         
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex" >
-                        <a href="{{route('documents')}}"  class="m-auto {{ request()->routeIs('document') ? 'text-indigo-600' : 'text-slate-600' }}">
+                        <a href="{{route('documents')}}"  class="m-auto hover:text-indigo-600 hover:border-b-2 hover:border-indigo-600  text-sm   {{ request()->routeIs('document') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-600' }}">
                          DOCUMENT
                         </a>
                     </div>

@@ -19,10 +19,28 @@ $('#show_interv').click(function (){
     } else {
       interv.classList.add('class', "hidden");
       interv.classList.remove('class', "show");
-      btn.innerText = "Ajouter des intervenants au service"
+      btn.innerText = "Ajouter des Details"
     }
 
 });
+
+$('#show_act').click(function (){
+    
+  var interv  = document.querySelector("#act_abrege");
+  var btn  = document.querySelector("#show_act");
+
+  if (interv.classList.contains('hidden')) {
+      interv.classList.remove('class', "hidden");
+      interv.classList.add('class', "show");
+      btn.innerText = "Masquer"
+    } else {
+      interv.classList.add('class', "hidden");
+      interv.classList.remove('class', "show");
+      btn.innerText = "Activité abrégée (Pour la carte pro)"
+    }
+
+});
+
 if ($('#partenaire').length) {
 
 document.querySelector('#partenaire').addEventListener('change', function() {
@@ -50,6 +68,7 @@ document.querySelector('#partenaire').addEventListener('change', function() {
   });
   }
 ///////////////////////////////////////////////////////////////////////
+// user navigation
 
 $('#N_acc').on('click', function () {
   $('.TheActiveLink').removeClass(['text-indigo-600'])

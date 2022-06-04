@@ -3,7 +3,7 @@
 
 @section('dashboard')
 
-<form action="{{route('ressortissant.update',  $ressortissant->res_id)}}" method="POST" class="flex-col flex">
+<form action="{{route('ressortissant.update',  $ressortissant->res_id)}}" method="POST" class="flex-col flex"  enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <label for="img" class="text-gray-700 mt-5 mb-0">Image: </label>
@@ -17,7 +17,7 @@
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('num_fiche') }}</span>
     @endif
     
-    <label for="cin" class="text-gray-700 mt-5 mb-0">CIN du ressortissant:</label>
+    <label for="cin" class="text-gray-700 mt-5 mb-0">N° Pièce d’identité du ressortissant:</label>
     <input id="cin" name="cin" type="text" placeholder="CIN du ressortissant" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('cin') border-pink-600  placeholder:text-pink-600 @enderror " value="{{ old('cin', $ressortissant->cin) }}" required />
      @if ($errors->has('cin'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('cin') }}</span>
@@ -143,6 +143,26 @@
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('rc') }}</span>
     @endif
 
+    
+    <label for="date_rc" class="text-gray-700 mt-5 mb-0">Date RC:</label>
+    <input id="date_rc" name="date_rc" type="date" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('date_rc') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('date_rc', $ressortissant->date_rc) }}" required/>
+     @if ($errors->has('date_rc'))
+        <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('date_rc') }}</span>
+    @endif
+
+    <label for="lieu_rc" class="text-gray-700 mt-5 mb-0">Lieu RC:</label>
+    <input id="lieu_rc" name="lieu_rc" type="text"  placeholder = "Lieu RC"  class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('lieu_rc') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('lieu_rc', $ressortissant->lieu_rc) }}" required/>
+     @if ($errors->has('lieu_rc'))
+        <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('lieu_rc') }}</span>
+    @endif
+
+    <label for="id_f" class="text-gray-700 mt-5 mb-0">IF:</label>
+    <input id="id_f" name="id_f" type="text"  placeholder = "IF"  class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('id_f') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('id_f', $ressortissant->id_f) }}" required/>
+     @if ($errors->has('id_f'))
+        <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('id_f') }}</span>
+    @endif
+
+
     <label for="patente" class="text-gray-700 mt-5 mb-0">Patente:</label>
     <input id="patente" name="patente" type="text"  placeholder = "Patente"  class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('patente') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('patente', $ressortissant->patente) }}" required/>
      @if ($errors->has('patente'))
@@ -179,7 +199,7 @@
 
     <label for="domaine" class="text-gray-700 mt-5 mb-0">Domaine:</label>
     <select name="domaine" id="domaine" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('domaine') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('domaine', $ressortissant->domaine) }}" required />
-        <option value="">Domaine</option>
+        <option value="{{$ressortissant->domaines->dom_id}}">{{$ressortissant->domaines->domaine}}</option>
       {{-- ajax output --}}
     </select>
     @if ($errors->has('domaine'))

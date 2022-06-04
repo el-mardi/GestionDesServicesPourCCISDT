@@ -11,9 +11,11 @@ use Illuminate\Http\Request;
 use App\Models\Ressortissant;
 use App\Models\DemandeService;
 use App\Models\DemandeAdhesion;
+use App\Models\TypesIntervention;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Models\DetailsCertifictOrigine;
 
 class DashboardController extends Controller
 {
@@ -22,7 +24,26 @@ class DashboardController extends Controller
     }
 
     public function dashboard () {
-        // dd($this->date);
+        $date = date('y-m-d');
+        // dd(date('Y', strtotime($date))); //get year
+
+// $test = DemandeService::find(2);
+        $mounth = date('F', strtotime ($date));
+        $year = date('Y', strtotime ($date));
+        $mydate=date_format(date_create($year."-".$mounth."-1"), 'y-m-d');
+
+        // dd();
+        // ->whereBetween('votes', [1, 100])
+        $c_acc = DemandeService::where('type_demande', '=', 'c_accompagnement')->distinct(['num_contrat_accom'])->whereBetween('date_debut', [$mydate, $date])->orderBy('num_contrat_accom')->count();
+
+        $orientation=  DemandeService::where('type_demande', '=', 'orientation')->distinct(['num_contrat_accom'])->whereBetween('date_debut', [$mydate, $date])->orderBy('num_contrat_accom')->count();
+
+        $document=  DemandeService::where('type_demande', '=', 'documents')->distinct(['num_contrat_accom'])->whereBetween('date_debut', [$mydate, $date])->orderBy('num_contrat_accom')->count();
+        
+        $adhesion=  DemandeAdhesion::distinct(['num_contrat_adh'])->whereBetween('date_debut', [$mydate, $date])->orderBy('num_contrat_adh')->count();
+        
+        // dd($c_acc, $orientation, $document, $adhesion);
+
         return view('dashboard');
     }
 
@@ -37,7 +58,7 @@ class DashboardController extends Controller
         }
         // dd($lastElement);
 
-        $date = date('Y-m-d');
+        $date = date('Y');
         // dd($lastElement); exit();
         return view('dashboard.contrat_accompagnrment', ['lastElement' => $lastElement, 'date' => $date]);
     }
@@ -124,7 +145,7 @@ class DashboardController extends Controller
     }
 
    public function enregis_orientation (Request $request){
-
+// dd($request->all());
     if (! empty( $request->session()->get('services'))) {
         
         $lastElement = DemandeService::where('type_demande', '=', 'orientation')->orderBy('num_contrat_accom', 'DESC')->First();
@@ -157,7 +178,9 @@ class DashboardController extends Controller
 
         foreach ($request->session()->get('services') as $service) {
         // dd(service);exit();
+        $data['services'][$service] = Service::findOrFail($service);
             $demande= DemandeService::create([
+
                 'num_contrat_accom' => $lastElement,
                 'service_id' => $service,
                 'type_demande'=> 'orientation',
@@ -172,14 +195,15 @@ class DashboardController extends Controller
             ]);
            
         }
-        $ser = DemandeService::where('num_contrat_accom', '=', 2)->get();
-        $data['ser']= $ser;
-        // dd($data);
-        // $request->session()->put('services');
+        // dd($demande);
+        $data['contrat'] = $demande;
+        // dd($data['contrat']);
+
+        $request->session()->put('services');
         $pdf = PDF::loadView('pdf.c_orientation', $data);
-        // $pdf->setPaper('A4', 'landscape'); 
         return $pdf->setPaper('a4', 'landscape')->stream();
-    
+        
+        // $pdf->setPaper('A4', 'landscape'); 
         // return redirect('/dashboard/ressortissant/'.$demande->num_contrat_accom);
     }else {
         return back()
@@ -190,13 +214,14 @@ class DashboardController extends Controller
 
 
    public function documents(Request $request) {
-    $documents = Service::where('type_id', '=', 3)->get();
+    $Doc_Sercice = TypesIntervention::where('code_type', '=', 'DOC DSR')->first();
+    $documents = Service::where('type_id', '=', $Doc_Sercice->type_id)->get();
     $request->session()->put('services');
     return view('dashboard.documents', ['documents' => $documents]);
    }
 
    public function enregis_documents (REquest $request){
-                //   dd($request->all());
+
         $validated = $request->validate([
             'service' => 'required|',
             'ressortissant' => 'required|exists:ressortissants,cin',
@@ -224,7 +249,7 @@ class DashboardController extends Controller
 
         $res = Ressortissant::where('cin', '=', $request->ressortissant)->firstOrFail();
        
-        // dd(service);exit();
+        // dd($request->service);exit();
             $demande= DemandeService::create([
                 'num_contrat_accom' => $lastElement,
                 'service_id' => $request->service,
@@ -238,6 +263,92 @@ class DashboardController extends Controller
                 'remarque' => $request->remarque ? $request->remarque : "...",
     
             ]);
+            // $demande = DemandeService::find(52);
+            
+            $service = Service::find($request['service'] );
+            // dd($service->code_service);
+            if ($service->code_service === 'CP')  {
+                $validated = $request->validate([
+                    'activite_carte' => 'required'
+                ]);
+                if (empty($res->num_carte)) {
+                    Ressortissant::where('res_id', '=', $res->res_id)->update([
+                        'num_carte' =>  $lastElement,
+                        'activite_carte' => $request['activite_carte'],
+                    ]);
+                }
+
+                Ressortissant::where('res_id', '=', $res->res_id)->update([
+                    'activite_carte' => $request['activite_carte'],
+                ]);
+
+                $res = Ressortissant::where('cin', '=', $request->ressortissant)->firstOrFail();
+                $data = [
+                    'res' => $res,
+                    'document' => $demande,
+                ];
+                $pdf = PDF::loadView('pdf.carte_pro', $data);
+                    return $pdf->setPaper(array(0, 0, 238, 153), 'portrait')->stream();
+            } 
+            else if($service->code_service === 'CO') {
+                $validated = $request->validate([
+                    'exportateur' => 'required',
+                    'destinataire' => 'required',
+                    'pays' => 'required',
+                    'transport' => 'required',
+                    'hs_code' => 'required',
+                    'details' => 'required',
+                    'quantite' => 'required',
+                    'date_fact' => 'required',
+                    'num_fact' => 'required',
+                ]);
+                $details = DetailsCertifictOrigine::create([
+                    'id_num_contrat' => $lastElement,
+                    'exportateur' => $request['exportateur'],
+                    'remarque' => $request->remarques,
+                    'destinataire' => $request['destinataire'],
+                    'num_facture' => $request['num_fact'],
+                    'date_facture' => $request['date_fact'],
+                    'quantite' => $request['quantite'],
+                    'details' => $request['details'],
+                    'nomenclature' => $request['hs_code'],
+                    'transport' => $request['transport'],
+                    'pays_or' => $request['pays'],
+                ]);
+                $data = [
+                    'res' => $res,
+                    'document' => $details,
+                    'demande' =>$demande,
+                ];
+                // dd($data);
+
+                $pdf = PDF::loadView('pdf.certificat_origine', $data);
+                return $pdf->setPaper('a4')->stream();
+                // return "certificat d'origine";
+            }
+            else if($service->code_service === 'AP') {
+                $data = [
+                    'res' => $res,
+                    'document' => $demande,
+                ];
+                // dd($res->juridiqueForme->code_forme);
+                if ($res->juridiqueForme->code_forme === "PP") {
+                    $pdf = PDF::loadView('pdf.att_exercice_pers_physique', $data);
+                    return $pdf->setPaper('a4')->stream();
+                } 
+                else if ($res->juridiqueForme->code_forme === "AE") {
+                    $pdf = PDF::loadView('pdf.att_exercice_auto_entre', $data);
+                    return $pdf->setPaper('a4')->stream();
+                }
+                else if ($res->juridiqueForme->code_forme === "COOP") {
+                    $pdf = PDF::loadView('pdf.att_exercice_cooperative', $data);
+                    return $pdf->setPaper('a4')->stream();
+                }
+                else {
+                    $pdf = PDF::loadView('pdf.att_exercice_societe', $data);
+                    return $pdf->setPaper('a4')->stream();
+                }
+            }
            
         // return redirect('/dashboard/ressortissant/'.$demande->num_contrat_accom);
         return 'Done';
@@ -254,7 +365,9 @@ class DashboardController extends Controller
             $lastElement->num_contrat_adh ++ ;
             $lastElement = $lastElement->num_contrat_adh;
         }
-       return view('dashboard.contrat_adhesion', ['lastElement' => $lastElement]);
+        $date = date('Y');
+
+       return view('dashboard.contrat_adhesion', ['lastElement' => $lastElement, 'date' =>$date]);
    }
 
    public function enregis_adhesion(Request $request) {
@@ -277,6 +390,7 @@ class DashboardController extends Controller
             $data['nom'] = $res->nom . ' ' . $res->prenom;
             $data['cin'] = $res->cin;
             $data['pack_tarif'] = 0;
+            $data['province'] = $request->province;
             foreach ($request->session()->get('packs') as $pack) {
                 $myPackDetails = Pack::join('details_services_packs', 'details_services_packs.pack_id', '=', 'packs.pack_id')
                 ->join('services', 'services.service_id', '=', 'details_services_packs.service_id')
@@ -285,7 +399,8 @@ class DashboardController extends Controller
                 
                 $data['nom_pack'][]=  $myPackDetails[0]['nom_pack'];
                 $data['pack_tarif'] = $data['pack_tarif'] + $myPackDetails[0]['pack_tarif'];
-
+                $data['date'] =$request->date_debut;
+                $data['res'] = $res;
                 foreach (  $myPackDetails as $key => $value) {
                     $data['service'][] =  $value['service'];
                 }

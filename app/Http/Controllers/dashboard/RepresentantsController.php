@@ -79,6 +79,8 @@ class RepresentantsController extends Controller
         
         $services = DemandeService::where('rep_id', '=', $id)
                                 ->distinct('num_contrat_accom')
+                                ->orderBy('type_demande')
+                                ->orderBy('num_contrat_accom', 'DESC')
                                 ->get(['num_contrat_accom', 'type_demande', 'res_id','fonc_id','date_debut']);
 
         $adhesions = DemandeAdhesion::where('rep_id', '=', $id)
