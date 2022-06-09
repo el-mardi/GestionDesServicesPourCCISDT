@@ -26,7 +26,7 @@ class CreateRessortissantsTable extends Migration
             $table->date('date_naissance');
             $table->string('sexe');
             $table->string('tel');
-            $table->string('mail');
+            $table->string('mail')->nullable();
             $table->string('adresse');
             $table->string('formation');
             $table->string('experience');

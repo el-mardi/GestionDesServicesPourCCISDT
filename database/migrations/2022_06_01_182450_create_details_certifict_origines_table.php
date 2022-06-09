@@ -17,7 +17,7 @@ class CreateDetailsCertifictOriginesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('id_num_contrat');
             $table->string('exportateur');
-            $table->string('remarque');
+            $table->string('remarque')->nullable();
             $table->string('num_facture');
             $table->date('date_facture');
             $table->string('destinataire');

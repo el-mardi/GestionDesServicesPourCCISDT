@@ -108,6 +108,7 @@ class DashboardController extends Controller
                 'date_fin' =>$request->date_fin,
                 'res_id' => $res->res_id,
                 'rep_id' => $rep->rep_id,
+                'duree' => $request->duree,
                 'fonc_id' => Auth::user()->fonc_id,
                 'remarque' => $request->remarque ? $request->remarque : ".....",
     
@@ -220,15 +221,16 @@ class DashboardController extends Controller
     return view('dashboard.documents', ['documents' => $documents]);
    }
 
-   public function enregis_documents (REquest $request){
+   public function enregis_documents (Request $request){
 
         $validated = $request->validate([
             'service' => 'required|',
             'ressortissant' => 'required|exists:ressortissants,cin',
             'province' => 'required',
             'date_debut' => 'required|date',
-            'date_fin' => 'date',
+            // 'date_fin' => 'date',
         ]);
+        // dd($request);
         $rep = new Representant;
 
         if (!empty($request['representant']) ) {
@@ -246,7 +248,7 @@ class DashboardController extends Controller
             $lastElement->num_contrat_accom ++ ;
             $lastElement = $lastElement->num_contrat_accom;
         }
-
+// dd($lastElement);
         $res = Ressortissant::where('cin', '=', $request->ressortissant)->firstOrFail();
        
         // dd($request->service);exit();
@@ -264,13 +266,18 @@ class DashboardController extends Controller
     
             ]);
             // $demande = DemandeService::find(52);
-            
+            $request->service = "";
             $service = Service::find($request['service'] );
             // dd($service->code_service);
-            if ($service->code_service === 'CP')  {
+
+            if ($service->code_service == 'CP-AE' || $service->code_service == 'CP-PP/CP-PM' || $service->code_service == 'CP-COOP')  {
                 $validated = $request->validate([
-                    'activite_carte' => 'required'
+                    'activite_carte' => 'required',
+                    'date_fin' => 'required|date',
                 ]);
+                if(empty($res->img)){
+                    return redirect()->back()->with("error", "Ce ressortissant n'a pas d'image!");
+                }
                 if (empty($res->num_carte)) {
                     Ressortissant::where('res_id', '=', $res->res_id)->update([
                         'num_carte' =>  $lastElement,
@@ -326,7 +333,7 @@ class DashboardController extends Controller
                 return $pdf->setPaper('a4')->stream();
                 // return "certificat d'origine";
             }
-            else if($service->code_service === 'AP') {
+            else if($service->code_service === 'AEX-PP' || $service->code_service === 'AEX-AE' || $service->code_service === 'AEX-SOC' || $service->code_service === 'AEX-COOP' ) {
                 $data = [
                     'res' => $res,
                     'document' => $demande,
@@ -376,16 +383,26 @@ class DashboardController extends Controller
 
             $request->validate([
                 'ressortissant' => 'required|exists:ressortissants,cin',
-                'representant' => 'required|exists:representants,cin',
+                // 'representant' => 'required|exists:representants,cin',
                 'province' => 'required',
                 'date_debut' => 'required|date',
                 'date_fin' => 'required|date',
             ]);
+
+            $rep = new Representant;
+
+        if (!empty($request['representant']) ) {
+            $validated = $request->validate([
+            'representant' => 'required|exists:representants,cin',
+            ]);
+      
+            $rep = Representant::where('cin', '=', $request->representant)->first();
+        }
             // dd($request->all(), $request->session()->get('packs'));
             $res = Ressortissant::where('cin', '=', $request->ressortissant)->firstOrFail();
             $res->dernier_contrat_adh =  $request->num_contrat_adhesion;
             $res->save();
-            $rep = Representant::where('cin', '=', $request->representant)->firstOrFail();
+            // $rep = Representant::where('cin', '=', $request->representant)->firstOrFail();
 
             $data['nom'] = $res->nom . ' ' . $res->prenom;
             $data['cin'] = $res->cin;
@@ -405,7 +422,7 @@ class DashboardController extends Controller
                     $data['service'][] =  $value['service'];
                 }
                 
-               
+            //    dd( $data);
             DemandeAdhesion::create([
                 'num_contrat_adh' => $request->num_contrat_adhesion,
                 'num_recu' => $request->num_recu,

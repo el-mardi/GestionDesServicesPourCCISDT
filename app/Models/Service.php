@@ -26,7 +26,7 @@ class Service extends Model
         'tarif',
         'ressource_service',
         'etat_service',
-        'motif_etat_service',
+        // 'motif_etat_service',
         'action_communication',
         'remarque',
         'documentation',

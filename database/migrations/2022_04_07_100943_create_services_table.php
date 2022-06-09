@@ -17,17 +17,17 @@ class CreateServicesTable extends Migration
             $table->bigIncrements('service_id');
             $table->string('code_service')->unique();
             $table->string('service');
-            $table->string('description');
+            $table->string('description')->nullable();
             // $table->string('periodicite');
-            $table->string('cible');
-            $table->string('lieu_prestation');
+            $table->string('cible')->nullable();
+            $table->string('lieu_prestation')->nullable();
             $table->float('tarif');
-            $table->string('ressource_service');
+            $table->string('ressource_service')->nullable();
             $table->boolean('etat_service');
-            $table->string('motif_etat_service');
+            // $table->string('motif_etat_service')->nullable();
             $table->string('documentation')->nullable();
             $table->string('action_communication')->nullable();
-            $table->string('remarque');
+            $table->string('remarque')->nullable();
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('resp_id')->nullable();
 

@@ -18,8 +18,8 @@ class CreateDemandeServicesTable extends Migration
             $table->string('num_contrat_accom');
             $table->string('type_demande');
             $table->date('date_debut');
-            $table->date('date_fin')->nulslable();
-            $table->integer('duree')->nulslable();
+            $table->date('date_fin')->nullable();
+            $table->integer('duree')->nullable();
             $table->string('province');
             $table->text('remarque')->nullable();
             

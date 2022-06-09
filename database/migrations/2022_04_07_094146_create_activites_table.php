@@ -11,23 +11,23 @@ class CreateActivitesTable extends Migration
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('activites', function (Blueprint $table) {
-            $table->bigIncrements('act_id');
-            $table->string('activite');
-            $table->unsignedBigInteger('sect_id');
-            $table->foreign('sect_id')->references('sect_id')->on('secteurs');
-        });
-    }
+    // public function up()
+    // {
+    //     Schema::create('activites', function (Blueprint $table) {
+    //         $table->bigIncrements('act_id');
+    //         $table->string('activite');
+    //         $table->unsignedBigInteger('sect_id');
+    //         $table->foreign('sect_id')->references('sect_id')->on('secteurs');
+    //     });
+    // }
 
     /**
      * Reverse the migrations.
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::dropIfExists('activites');
-    }
+    // public function down()
+    // {
+    //     Schema::dropIfExists('activites');
+    // }
 }

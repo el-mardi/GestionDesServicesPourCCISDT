@@ -96,6 +96,7 @@ Route::post('/packs/getservice', [AjaxController::class, 'getservice'])->name('p
 Route::post('/packs/{id}/getservice', [AjaxController::class, 'getservice'])->name('packgetserviceedit');
 
 Route::post('/suppservice', [AjaxController::class, 'suppservice'])->name('suppservice');
+Route::post('/packs/suppservice', [AjaxController::class, 'suppservice'])->name('suppack');
 Route::post('/packs/{id}/suppservice', [AjaxController::class, 'suppservice'])->name('suppservicedepack');
 
 Route::post('/getpack', [AjaxController::class, 'getpack'])->name('getpack');

@@ -60,5 +60,28 @@
 
 </form>
 
+<script>
+        function suppservice($id){
+        var el =document.getElementById($id).remove();
+        var value = $id;
+        $.ajax({    
+             headers: {
+                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+             },
+ 
+             type:'POST',
+             url:'/dashboard/packs/suppservice',
+             data:{id:value},
+             success:function(data){
+                 console.log(data);
+             },
+             error:function(data){
+                console.log(JSON.stringify(error));
+             }
+
+          });
+}
+
+</script>
 
 @endsection

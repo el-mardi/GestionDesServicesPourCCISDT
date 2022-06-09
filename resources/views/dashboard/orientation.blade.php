@@ -28,16 +28,16 @@
         </tbody>
     </table>
 
-    <label for="ressortissant" class="text-gray-700 mt-5 mb-0">CIN d'accompagné:</label>
-    <input id="ressortissant" name="ressortissant" type="text" placeholder="le cin d'accompagné" class="toDisableIt w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('ressortissant') border-pink-600  placeholder:text-pink-600 @enderror " value="{{ old('ressortissant') }}" required />
+    <label for="ressortissant" class="text-gray-700 mt-5 mb-0">N° Pièce d’identité d'accompagné:</label>
+    <input id="ressortissant" name="ressortissant" type="text" placeholder="N° Pièce d’identité d'accompagné" class="toDisableIt w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('ressortissant') border-pink-600  placeholder:text-pink-600 @enderror " value="{{ old('ressortissant') }}" required />
      @if ($errors->has('ressortissant'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('ressortissant') }}</span>
         <a href="{{route('ressortissant.create')}}" class="mx-auto p-2 text-sm  bg-orange-200 rounded-sm w-fit hover:cursor-pointer hover:bg-orange-300">Ajouter ressortissant</a>
 
     @endif
 
-    <label for="representant" class="text-gray-700 mt-5 mb-0">CIN du représentant: </label>
-    <input id="representant" name="representant" type="text" placeholder="le cin du représentant" class="toDisableIt w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('representant') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('representant') }}" required />
+    <label for="representant" class="text-gray-700 mt-5 mb-0">N° Pièce d’identité du représentant: </label>
+    <input id="representant" name="representant" type="text" placeholder="N° Pièce d’identité du représentant" class="toDisableIt w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('representant') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('representant') }}" />
      @if ($errors->has('representant'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('representant') }}</span>
         <a href="#" class="mx-auto p-2 text-sm  bg-orange-200 rounded-sm w-fit hover:cursor-pointer hover:bg-orange-300">Ajouter représentant</a>
@@ -45,7 +45,14 @@
     @endif
 
     <label for="province" class="text-gray-700 mt-5 mb-0">Province:</label>
-    <input id="province" name="province" type="text"  placeholder = "province"  class="toDisableIt w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('province') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('province') }}" required/>
+    <select id="province" name="province"  class="toDisableIt w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('province') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('province') }}" >
+        <option value="">Séléctionner le province</option>
+        <option value="OUARZAZATE">OUARZAZATE</option>
+        <option value="ERRACHIDIA">ERRACHIDIA</option>
+        <option value="TINGHIR">TINGHIR</option>
+        <option value="MIDELT">MIDELT</option>
+        <option value="ZAGORA">ZAGORA</option>
+    </select>
      @if ($errors->has('province'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('province') }}</span>
     @endif
@@ -72,7 +79,7 @@
     <div onclick="showSubmit()" id="leDiv" class="mx-auto p-2 m-5 bg-lime-200 rounded-sm shadow-lg w-fit hover:cursor-pointer hover:bg-lime-300 border border-lime-400">Vérifier vos informations</div>
 
     <div id='createBtn' class="mx-auto" style="display: none"> 
-        <button id="submit" type="submit" class='mx-auto p-2 m-5 bg-green-300 rounded-md shadow-lg w-fit hover:cursor-pointer hover:bg-green-400'>Enregistrer & Imprimer le contrat</button>  
+        <button id="submit" type="submit" class='mx-auto p-2 m-5 bg-green-300 rounded-md shadow-lg w-fit hover:cursor-pointer hover:bg-green-400'>Enregistrer & Imprimer la fiche</button>  
         
         <div onclick='cancelSubmitForm()' class='mx-auto p-2 m-5 bg-orange-300 rounded-md shadow- w-fit hover:cursor-pointer hover:bg-orange-400 ' style='display:inline-block'>   Annuler  </div> 
     </div>

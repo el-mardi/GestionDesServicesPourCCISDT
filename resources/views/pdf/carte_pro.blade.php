@@ -19,6 +19,7 @@
             margin: 0.3rem !important;
             width: 100% !important;
             font-size: smaller !important;
+            line-height: 1.35
 
        }
        .mrDiv{
@@ -39,13 +40,14 @@
             position: absolute !important;
             width: 1.1cm !important; 
             height:1cm !important;
-            bottom: 1rem !important;
+            bottom: 0.6rem !important;
             right: 0.7rem;
        }
 
        .back{
-           padding: 1.5rem 1.5rem 0rem 1.5rem !important;
+           padding: 1.2rem 1.5rem 0rem 1.5rem !important;
        }
+       /* border: solid 1px black !important;  */
     </style>
 
 </head>
@@ -54,8 +56,8 @@
            <div class=" The_Head ">
                <div class="inline-block">  <img src="images/logo_ccis_dt_2-removebg-preview.png"   class=" block " style=" width: 1.3cm; height:1.5cm;"> </div>
                <div class="inline-block text-center">
-                   <div class="" style="width: 4.8cm !important; margin: 0 2px !important;  border: solid 1px black !important;"> <span>N° : {{$res->num_carte}}/{{date('Y', strtotime($document->date_debut))}} </span> <br></div>
-                   <div class="" style="width: 4.8cm !important; margin: 3px 2px 0 2px !important;  border: solid 1px black !important;"><span>{{$res->nom}} {{$res->prenom}}</span></div>
+                   <div class="" style="width: 4.8cm !important; margin: 0 2px !important;  "> <span>N° : {{$res->num_carte}}/{{date('Y', strtotime($document->date_debut))}} </span> <br></div>
+                   <div class="" style="width: 4.8cm !important; margin: 3px 2px 0 2px !important;  "><span>{{$res->nom}} {{$res->prenom}}</span></div>
                </div>
                @if(!empty($res->img))
                    
@@ -66,36 +68,42 @@
            </div>
 
            <div class="w-full mrDiv">
-               <div class=" inline-block "  style="min-width: 5cm !important;  border: solid 1px black !important;"> <span>N° Pièce d’identité : {{$res->cin}}</span> </div>
-               @if (!empty($res->rc))
+               {{-- @if (!empty($res->rc)) --}}
                 @if ($res->juridiqueForme->code_forme == 'COOP')
-                <div class=" inline-block " style="min-width: 2.8cm !important;  border: solid 1px black !important;"> <span class="">RLC: {{$res->rc}}
+               <div class=" inline-block "  style="min-width: 5cm !important;  "> <span>N° Pièce d’identité : {{$res->cin}}</span> </div>
+
+                <div class=" inline-block " style="min-width: 2.8cm !important;  "> <span class="">RLC: {{$res->rc}}
                 </span> </div>
+                @elseif ($res->juridiqueForme->code_forme == 'AE')
+               <div class=" inline-block "  style="min-width: 7.9cm !important;   margin-bottom: 4px !important"> <span>N° Pièce d’identité : {{$res->cin}}</span> </div>
+
+                {{-- <div class=" inline-block " style="min-width: 2.8cm !important;  "> <span class="">ID: {{$res->rc}}
+                </span></div> --}}
                 @else
-                <div class=" inline-block " style="min-width: 2.8cm !important;  border: solid 1px black !important;"> <span class="">RC: {{$res->rc}}
+                <div class=" inline-block "  style="min-width: 5cm !important;  "> <span>N° Pièce d’identité : {{$res->cin}}</span> </div>
+
+                <div class=" inline-block " style="min-width: 2.8cm !important;  "> <span class="">RC: {{$res->rc}}
                 </span> </div>
-                    @endif
                    
-                @else
-                <div class=" inline-block " style="min-width: 2.8cm !important;  border: solid 1px black !important;"> <span class="">RC: {{$res->id_f}}
-                </span> </div>
                 @endif
+                
+                {{-- @endif --}}
 
            </div>
 
            <div class="w-full mrDiv">
-                <div class=" inline-block "  style="min-width: 5cm !important;  border: solid 1px black !important;"><span class=" "> ICE : {{$res->ice}}</span></div>
-                <div class=" inline-block "  style="min-width: 2.8cm !important;  border: solid 1px black !important;"><>T.P : {{$res->patente}}</span></div>
+                <div class=" inline-block "  style="min-width: 5cm !important;  "><span class=""> ICE : {{$res->ice}}</span></div>
+                <div class=" inline-block "  style="min-width: 2.8cm !important;  "><>T.P : {{$res->patente}}</span></div>
             </div>
 
-            <div class="w-full mrDiv" >
-                <div class=" inline-block "  style="min-width: 7.97cm !important;  border: solid 1px black !important;"><span> Adresse : {{$res->adresse}}</span> </div>
+            <div class="w-full" >
+                <div class=" inline-block "  style="min-width: 7.97cm !important; max-width: 7.97cm !important;  "><span class=""> Adresse : {{$res->adresse}}</span> </div>
             </div>
 
             <div class="w-full mrDiv">
-                    <div class=""  style="max-width: 6.7cm !important;  border: solid 1px black !important;"><span> Activité : {{$res->activite_carte}} </span> </div>
+                    <div class=""  style="max-width: 6.7cm !important;  "><span> Activité : {{$res->activite_carte}} </span> </div>
 
-                    <div class=" inline-block"  style="min-width: 6.7cm !important;  border: solid 1px black !important; margin-top:2px !important;"><span>  Valable jusqu’au :{{$document->date_fin}}</span> </div>
+                    <div class=" inline-block"  style="min-width: 6.7cm !important;   margin-top:2px !important;"><span>  Valable jusqu’au :{{$document->date_fin}}</span> </div>
             </div>
                 <div class=""><img id="signature" src="images/cacher.jpg" class="" alt="">
                 </div>
@@ -104,7 +112,7 @@
    <div class="back" style="break-after: always ">
         <img src="images/hearder.png" alt="">
         
-        <div style="padding: 1rem 0 !important">
+        <div style="padding: 0.9rem 0 !important">
             <H2 class="text-center"><b>CARTE PROFESSIONNELLE</b></H2>
         </div>
 

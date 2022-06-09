@@ -7,16 +7,21 @@
     <title>Fiche d'orientation</title>
     <link rel="stylesheet" href="css/app.css">
 
+    <style>
+        *{
+            margin-bottom: 0 !important;
+        }
+    </style>
 </head>
 <body class="ThePdf" >
     <div class="mx-8 " >
         <div class="">
-            <div class="mt-0 mb-8">
+            <div class="mt-0 mb-5">
                 <div class="text-center mb-0">
                     <img src="images/hearder.png" class="head">
                 </div>
-                <div class="mt-2 w-full text-center"> 
-                    <span class="text-2xl mb-5">
+                <div class=" w-full text-center" style="margin: 14px 0 !important;"> 
+                    <span class="text-2xl">
                         <B>FICHE D'ORTIENTATION</B>
                     </span>
                 </div>
@@ -73,7 +78,7 @@
     <div class="text-center mb-0">
         <img src="images/hearder.png" class="head">
     </div>
-    <div class="my-5 w-full text-center"> 
+    <div class="my-5 w-full text-center" style="margin: 24px 0 !important;"> 
         <p class="text-center text-xl" ><b>ACTIONS EFFECTUEES</b></p>
     </div>
    

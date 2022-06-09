@@ -28,20 +28,27 @@
         </tbody>
     </table> --}}
 
-    <label for="ressortissant" class="text-gray-700 mt-5 mb-0">CIN du ressortissant:</label>
-    <input id="ressortissant" name="ressortissant" type="text" placeholder="le cin du ressortissant" class="toDisableIt w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('ressortissant') border-pink-600  placeholder:text-pink-600 @enderror " value="{{ old('ressortissant') }}" required />
+    <label for="ressortissant" class="text-gray-700 mt-5 mb-0">N° Pièce d’identité du ressortissant:</label>
+    <input id="ressortissant" name="ressortissant" type="text" placeholder="N° Pièce d’identité du ressortissant" class="toDisableIt w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('ressortissant') border-pink-600  placeholder:text-pink-600 @enderror " value="{{ old('ressortissant') }}" required />
      @if ($errors->has('ressortissant'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('ressortissant') }}</span>
     @endif
 
-    <label for="representant" class="text-gray-700 mt-5 mb-0">CIN du représentant: </label>
-    <input id="representant" name="representant" type="text" placeholder="le cin du représentant" class="toDisableIt w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('representant') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('representant') }}" />
+    <label for="representant" class="text-gray-700 mt-5 mb-0">N° Pièce d’identité du représentant: </label>
+    <input id="representant" name="representant" type="text" placeholder="N° Pièce d’identité du représentant" class="toDisableIt w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('representant') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('representant') }}" />
      @if ($errors->has('representant'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('representant') }}</span>
     @endif
 
     <label for="province" class="text-gray-700 mt-5 mb-0">Province:</label>
-    <input id="province" name="province" type="text"  placeholder = "province"  class="toDisableIt w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('province') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('province') }}" required/>
+    <select id="province" name="province"  class="toDisableIt w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('province') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('province') }}" >
+        <option value="">Séléctionner le province</option>
+        <option value="OUARZAZATE">OUARZAZATE</option>
+        <option value="ERRACHIDIA">ERRACHIDIA</option>
+        <option value="TINGHIR">TINGHIR</option>
+        <option value="MIDELT">MIDELT</option>
+        <option value="ZAGORA">ZAGORA</option>
+    </select>
      @if ($errors->has('province'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('province') }}</span>
     @endif

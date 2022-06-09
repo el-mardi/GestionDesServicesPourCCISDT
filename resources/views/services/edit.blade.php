@@ -43,8 +43,14 @@
 
     
     <label for="responsable" class="text-gray-700 mt-5 mb-0">Responsable:</label>
-    <select name="responsable" id="responsable" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('responsable') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('responsable') }}" required />
-        <option value="{{$service->Fonctionnaire->fonc_id}}">{{$service->fonctionnaire->nom}} {{$service->fonctionnaire->prenom}}</option>
+    <select name="responsable" id="responsable" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('responsable') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('responsable') }}"  />
+    @if (isset($service->Fonctionnaire->fonc_id))
+        
+    <option value="{{$service->Fonctionnaire->fonc_id}}">{{$service->fonctionnaire->nom}} {{$service->fonctionnaire->prenom}}</option>
+    @else
+        <option value="">Le responsable</option>        
+    @endif
+    
     @foreach ($resps as $resp)
         <option value="{{$resp->fonc_id}}">{{$resp->nom}} {{$resp->prenom}}</option>
     @endforeach
@@ -87,11 +93,11 @@
     <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('etat_service') }}</span>
     @endif
 
-    <label for="motif_etat_service" class="text-gray-700 mt-5 mb-0"> Motif d'état service: </label>
+    {{-- <label for="motif_etat_service" class="text-gray-700 mt-5 mb-0"> Motif d'état service: </label>
     <input id="motif_etat_service" name="motif_etat_service" type="text" placeholder="Motif d'état service" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('motif_etat_service') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('motif_etat_service', $service->motif_etat_service) }}"/>
     @if ($errors->has('motif_etat_service'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('motif_etat_service') }}</span>
-    @endif
+    @endif --}}
 
     <label for="documentation" class="text-gray-700 mt-5 mb-0"> Documentation: </label>
     <input id="documentation" name="documentation" type="text" placeholder="Documentation" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('documentation') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('documentation', $service->documentation) }}"/>

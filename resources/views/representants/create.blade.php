@@ -6,8 +6,8 @@
 <form action="{{route('representants.store')}}" method="POST" class="flex-col flex">
     @csrf
     
-    <label for="cin" class="text-gray-700 mt-5 mb-0">CIN de representant:</label>
-    <input id="cin" name="cin" type="text" placeholder="le cin de representant" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('cin') border-pink-600  placeholder:text-pink-600 @enderror " value="{{ old('cin') }}" required />
+    <label for="cin" class="text-gray-700 mt-5 mb-0">N° Pièce d’identité de representant:</label>
+    <input id="cin" name="cin" type="text" placeholder="N° Pièce d’identité de representant" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('cin') border-pink-600  placeholder:text-pink-600 @enderror " value="{{ old('cin') }}" required />
      @if ($errors->has('cin'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('cin') }}</span>
     @endif

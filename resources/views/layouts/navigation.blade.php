@@ -24,26 +24,26 @@
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
                         <a href="{{route('orientation')}}" class="m-auto hover:text-indigo-600 hover:border-b-2 hover:border-indigo-600  text-sm   {{ request()->routeIs('orientation') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-600' }}">
-                         ORIENTATION
+                         ORIENTATION/INFORMATION
                         </a>
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
                         <a href="{{route('accompagnement')}}" class="m-auto hover:text-indigo-600 hover:border-b-2 hover:border-indigo-600  text-sm   {{ request()->routeIs('accompagnement') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-600' }}">
-                         CONTRAT D'ACCOMPAGNEMENT
-                        </a>
-                        
-                    </div>
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
-                        <a href="{{route('adhesion')}}" class="m-auto hover:text-indigo-600 hover:border-b-2 hover:border-indigo-600  text-sm   {{ request()->routeIs('adhesion') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-600' }}">
-                         CONTRAT D'ADHESION
+                         ACCOMPAGNEMENT
                         </a>
                         
                     </div>
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex" >
-                        <a href="{{route('documents')}}"  class="m-auto hover:text-indigo-600 hover:border-b-2 hover:border-indigo-600  text-sm   {{ request()->routeIs('document') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-600' }}">
-                         DOCUMENT
+                        <a href="{{route('documents')}}"  class="m-auto hover:text-indigo-600 hover:border-b-2 hover:border-indigo-600  text-sm   {{ request()->routeIs('document') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-600' }}  {{ request()->routeIs('documents') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-600' }}">
+                         DÉLIVRANCE DOCUMENTS
+                        </a>
+                    </div>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
+                        <a href="{{route('adhesion')}}" class="m-auto hover:text-indigo-600 hover:border-b-2 hover:border-indigo-600  text-sm   {{ request()->routeIs('adhesion') ? 'text-indigo-600 border-b-2 border-indigo-600' : 'text-slate-600' }}">
+                         ADHESION
                         </a>
                     </div>
 

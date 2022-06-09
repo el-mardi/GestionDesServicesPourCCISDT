@@ -26,8 +26,7 @@ class SecteurController extends Controller
             $secteurs[$secteur->secteur]['domaine'] = Domaine::where('sect_id', '=', $secteur->sect_id)
                                 ->get();
 
-            $secteurs[$secteur->secteur]['activite'] = Activite::where('sect_id', '=', $secteur->sect_id)
-            ->get();
+            // $secteurs[$secteur->secteur]['activite'] = Activite::where('sect_id', '=', $secteur->sect_id)->get();
 
             $secteurs[$secteur->secteur]['ressortissant'] = Ressortissant::where('secteur', '=', $secteur->sect_id)
             ->get();
@@ -126,17 +125,17 @@ class SecteurController extends Controller
     {
         $res = Ressortissant::where('secteur', '=', $id)->first();
 
-        $act = Activite::where('sect_id', '=', $id)->get('act_id');
+        // $act = Activite::where('sect_id', '=', $id)->get('act_id');
         $dom = Domaine::where('sect_id', '=', $id)->get('dom_id');
         
-        if (!empty($act)) {
-            foreach ($act as $value) {
-                $acts = Ressortissant::where('act_id', '=', $value['act_id'])->first();
-                if ($acts != null) {
-                    return redirect()->back()->with('error', "Impossible de supprimer le secteur, des ressortissant sont lié à des activités de secteur !"); 
-                }
-            }
-        }
+        // if (!empty($act)) {
+        //     foreach ($act as $value) {
+        //         $acts = Ressortissant::where('act_id', '=', $value['act_id'])->first();
+        //         if ($acts != null) {
+        //             return redirect()->back()->with('error', "Impossible de supprimer le secteur, des ressortissant sont lié à des activités de secteur !"); 
+        //         }
+        //     }
+        // }
 
         if (!empty($dom)) {
             foreach ($dom as $value) {
@@ -147,10 +146,10 @@ class SecteurController extends Controller
             }
         }
         // dd($doms, $acts, $res);
-        if (empty($res) && empty($acts) && empty($doms)){
+        if (empty($res) && empty($doms)){
         
             Domaine::where('sect_id', '=', $id)->delete();
-            Activite::where('sect_id', '=', $id)->delete();
+            // Activite::where('sect_id', '=', $id)->delete();
             Secteur::where('sect_id', '=', $id)->delete();
 
             return redirect()->back()->with('success', "Le Secteur été supprimer avec success");

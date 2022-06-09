@@ -84,11 +84,11 @@
         <div class="mt-3">
 
             <p class="mt-2">
-            <b>E</b>Est  bien   connu  de  nos  services  comme  exerçant  la  profession  sus-indiquée et ce en  vertu  de  son  inscription  au   Registre  national de l’auto-entrepreneur sous l’Identifiant  n° {{$res->id_f}} 
+            <b>E</b>st  bien   connu  de  nos  services  comme  exerçant  la  profession  sus-indiquée et ce en  vertu  de  son  inscription  au   Registre  national de l’Auto-Entrepreneur sous l’Identifiant  n° {{$res->ice}} 
             </p>
 
             <p class="mt-2" >
-            <b>C</b>Cette Attestation est délivrée à l’intéressée sur sa demande pour servir et valoir ce que de droit.
+            <b>C</b>ette Attestation est délivrée à l’intéressée sur sa demande pour servir et valoir ce que de droit.
             </p>
 
             <p class="mt-4 text-left">

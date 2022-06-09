@@ -86,11 +86,11 @@
     <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('etat_service') }}</span>
     @endif
 
-    <label for="motif_etat_service" class="text-gray-700 mt-5 mb-0"> Motif d'état service: </label>
+    {{-- <label for="motif_etat_service" class="text-gray-700 mt-5 mb-0"> Motif d'état service: </label>
     <input id="motif_etat_service" name="motif_etat_service" type="text" placeholder="Motif d'état service" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('motif_etat_service') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('motif_etat_service') }}"/>
     @if ($errors->has('motif_etat_service'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('motif_etat_service') }}</span>
-    @endif
+    @endif --}}
 
     <label for="documentation" class="text-gray-700 mt-5 mb-0"> Documentation: </label>
     <input id="documentation" name="documentation" type="text" placeholder="Documentation" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('documentation') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('documentation') }}"/>

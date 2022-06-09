@@ -30,6 +30,8 @@ module.exports = {
                 lime: colors.lime,
                 green: colors.green,
                 brown: colors.brown,
+                'MyColor': '#e0f2fe',
+                
             }
         },
     },

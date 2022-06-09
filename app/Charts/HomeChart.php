@@ -33,7 +33,7 @@ class HomeChart extends BaseChart
         // $sexe = Ressortissant::pluck("sexe");
         
         return Chartisan::build()
-            ->labels(['Accompagnement', 'Orientation', 'Document', 'Adhesion'])
+            ->labels(['Accompagnement', 'Orientation/Information', 'Documents délivrées', 'Adhesion'])
             ->dataset('Total ', $data);
             // ->dataset('Sample', [3, 2, 1, 2]);
     }

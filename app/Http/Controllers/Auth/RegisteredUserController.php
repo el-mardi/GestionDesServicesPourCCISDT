@@ -57,7 +57,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($fonctionnaire));
 
-        Auth::login($fonctionnaire);
+        // Auth::login($fonctionnaire);
 
         return redirect(RouteServiceProvider::HOME);
     }

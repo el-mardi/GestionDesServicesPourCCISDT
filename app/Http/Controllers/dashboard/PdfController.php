@@ -93,7 +93,7 @@ class PdfController extends Controller
             'document' => $demande,
         ];
         
-        if ($action === 'CP')  {
+        if ($action === 'CP-AE'|| $action === 'CP-PP/CP-PM'|| $action === 'CP-COOP')  {
             $pdf =PDF::loadView('pdf.carte_pro', $data);
             return $pdf->setPaper(array(0, 0, 238, 153), 'portrait')->stream();
 
@@ -105,11 +105,11 @@ class PdfController extends Controller
                 'demande' => $demande,
                 'document' => $details,
             ];
-            
+            // dd($id);
             $pdf = PDF::loadView('pdf.certificat_origine', $data);
             return $pdf->setPaper('a4')->stream();
         }
-        else if($action === 'AP') {
+        else if($action === 'AEX-PP' || $action === 'AEX-AE' || $action === 'AEX-SOC' || $action === 'AEX-COOP' ) {
             // dd($res->juridiqueForme->code_forme);
             if ($res->juridiqueForme->code_forme === "PP") {
                 $pdf = PDF::loadView('pdf.att_exercice_pers_physique', $data);

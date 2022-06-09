@@ -16,95 +16,95 @@
 
                 <table id="Menu" class="mx-0  h-full w-full">
                     <thead class=" ">
-                        <tr class=" {{request()->routeIs('ressortissant.*') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
+                        <tr class=" {{request()->routeIs('ressortissant.*') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
                                 <a href="{{route('ressortissant.index')}}" class=" block py-3 p-2"> <i class=" fa-solid fa-users  fa-lg px-1"></i> RESSORTISSANT</a>
                             </th>
                         </tr>
 
-                        <tr class="hover:bg-blue-300 {{request()->routeIs('accompagnement') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200"}} ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
-                            <a href="{{route('accompagnement')}}" class=" block py-3 p-2"><i class=" fa-solid fa-file-signature  fa-lg px-1"></i> CONTRAT D'ACCOMPAGNEMENT</a>
+                        <tr class="hover:bg-blue-300 {{request()->routeIs('accompagnement') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600"}} ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
+                            <a href="{{route('accompagnement')}}" class=" block py-3 p-2"><i class=" fa-solid fa-file-signature  fa-lg px-1"></i> ACCOMPAGNEMENT</a>
                             </th>
                         </tr>
                        
-                        <tr class=" {{request()->routeIs('orientation') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
-                                <a href="{{route('orientation') }}" class=" block py-3 p-2"><i class=" fa-solid fa-handshake-angle  fa-lg px-1"></i> ORIENTATION</a>
+                        <tr class=" {{request()->routeIs('orientation') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
+                                <a href="{{route('orientation') }}" class=" block py-3 p-2"><i class=" fa-solid fa-handshake-angle  fa-lg px-1"></i> ORIENTATION/INFORMATION</a>
                             </th>
                         </tr>
                         
-                        <tr class=" {{request()->routeIs('documents') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
-                                <a href="{{route('documents')}}" class=" block py-3 p-2"><i class=" fa-solid fa-print  fa-lg px-1"></i> DELIVRENCE DE DOCUMENT</a>
+                        <tr class=" {{request()->routeIs('documents') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
+                                <a href="{{route('documents')}}" class=" block py-3 p-2"><i class=" fa-solid fa-print  fa-lg px-1"></i> DÉLIVRANCE DOCUMENTS</a>
                             </th>
                         </tr>
-                        <tr class=" {{request()->routeIs('adhesion') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
-                                <a href="{{route('adhesion')}}" class=" block py-3 p-2"><i class=" fa-solid fa-address-card fa-lg"></i> CONTRAT D'ADHESION</a>
+                        <tr class=" {{request()->routeIs('adhesion') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
+                                <a href="{{route('adhesion')}}" class=" block py-3 p-2"><i class=" fa-solid fa-address-card fa-lg"></i> ADHESION</a>
                             </th>
                         </tr>
 
-                        <tr class=" {{request()->routeIs('representants.*') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
+                        <tr class=" {{request()->routeIs('representants.*') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
                                 <a href="{{route('representants.index')}} " class=" block py-3 p-2"><i class=" fa-solid fa-person fa-lg px-1"></i> REPRÉSENTANT</a>
                             </th>
                         </tr>
-                        <tr class=" {{request()->routeIs('administation.*') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
+                        <tr class=" {{request()->routeIs('administation.*') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
                                 <a href="{{route('administation.index')}}" class=" block py-3 p-2"><i class=" fa-solid fa-users-line fa-lg px-1"></i> FONCTIONNAIRE</a>
                             </th>
                         </tr>
-                        <tr class=" {{request()->routeIs('services.*') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
-                                <a href="{{route('services.index')}} " class=" block py-3 p-2"><i class=" fa-solid fa-money-check  fa-lg px-1"></i> ACTION</a>
+                        <tr class=" {{request()->routeIs('services.*') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
+                                <a href="{{route('services.index')}} " class=" block py-3 p-2"><i class=" fa-solid fa-money-check  fa-lg px-1"></i> PRESTATION</a>
                             </th>
                         </tr>
-                        <tr class=" {{request()->routeIs('typesServices.*') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
+                        <tr class=" {{request()->routeIs('typesServices.*') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
                                 <a href="{{route('typesServices.index')}}" class=" block py-3 p-2"><i class=" fa-solid fa-money-check  fa-lg px-1"></i> SERVICE</a>
                             </th>
                         </tr>
                         
-                        <tr class=" {{request()->routeIs('packs.*') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
+                        <tr class=" {{request()->routeIs('packs.*') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
                                 <a href="{{route('packs.index')}} " class=" block py-3 p-2"><i class=" fa-solid fa-money-check  fa-lg px-1"></i> PACK </a>
                             </th>
                         </tr>
 
-                        <tr class=" {{request()->routeIs('formesJuridiques.*') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
+                        <tr class=" {{request()->routeIs('formesJuridiques.*') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
                                 <a href="{{route('formesJuridiques.index')}}" class=" block py-3 p-2"><i class=" fa-solid fa-scale-balanced fa-lg px-1"></i> FORME JURIDIQUE</a>
                             </th>
                         </tr>
-                        <tr class=" {{request()->routeIs('secteurs.*') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
+                        <tr class=" {{request()->routeIs('secteurs.*') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
                                 <a href="{{route('secteurs.index')}} " class=" block py-3 p-2"><i class=" fa-solid fa-briefcase fa-lg px-1"></i> SECTEUR</a>
                             </th>
                         </tr>
-                        <tr class=" {{request()->routeIs('domaines.*') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
+                        <tr class=" {{request()->routeIs('domaines.*') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
                                 <a href="{{route('domaines.index')}}" class=" block py-3 p-2"><i class=" fa-solid fa-briefcase fa-lg px-1"></i> DOMAINE</a>
                             </th>
                         </tr>
-                        {{-- <tr class=" {{request()->routeIs('activites.*') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
+                        {{-- <tr class=" {{request()->routeIs('activites.*') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
                                 <a href="{{route('activites.index')}}" class=" block py-3 p-2"><i class=" fa-solid fa-briefcase fa-lg px-1"></i> ACTIVITE</a>
                             </th>
                         </tr> --}}
-                        <tr class=" {{request()->routeIs('qualites.*') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
+                        <tr class=" {{request()->routeIs('qualites.*') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
                                 <a href="{{route('qualites.index')}}" class=" block py-3 p-2"><i class=" fa-solid fa-user-check fa-lg px-1"></i> QUALITÉ</a>
                             </th>
                         </tr>
                         
-                        <tr class=" {{request()->routeIs('partenaires.*') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
+                        <tr class=" {{request()->routeIs('partenaires.*') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
                                 <a href="{{route('partenaires.index')}}" class=" block py-3 p-2"><i class=" fa-solid fa-users-line fa-lg px-1"></i> PARTENAIRE</a>
                             </th>
                         </tr>
-                        <tr class=" {{request()->routeIs('intervenants.*') ? "bg-blue-500  text-slate-200 "  : " bg-blue-200 "}} hover:bg-blue-300 ">
-                            <th class="border border-indigo-400 text-left text-sm border-separate">
+                        <tr class=" {{request()->routeIs('intervenants.*') ? "bg-cyan-500  text-white "  : " bg-slate-200 text-sky-600 "}} hover:bg-blue-300 ">
+                            <th class="border border-slate-300 text-left text-sm border-separate">
                                 <a href="{{route('intervenants.index')}}" class=" block py-3 p-2"><i class=" fa-solid fa-users-line fa-lg px-1"></i> INTERVENANT</a>
                             </th>
                         </tr>
@@ -186,20 +186,29 @@
                                 <h4 class="ml-5" class="mt-5">Ce mois:</h4>
                             </div>
 
-                            <div id="chart" class="h-96 w-2/4">
-                                <h4 class="ml-5">Total:</h4>
+                            <div id="thisYear" class="h-96 w-2/4">
+                                <h4 class="ml-5" class="mt-5">Cette année:</h4>
                             </div>
+                           
                         </div>
 
                         <div class="flex w-full mt-10 ">
-                            <div id="sexe" class="h-96 w-2/4 mx-auto">
+                            <div id="chart" class="h-96 w-3/5">
+                                <h4 class="ml-5">Total:</h4>
+                            </div>
+                            
+                            <div id="sexe" class="h-96 w-2/5 mx-auto">
                                 <h4 class="ml-5">Sexe:</h4>
                             </div>
                         </div>
                             
-                        <div id="charts-id-1" class="mt-10 h-96 w-full">
-                           <h4 class="ml-5"> Les actions:</h4>
+                        <div id="serviceAnne" class="mt-10 h-96 w-full">
+                           <h4 class="ml-5"> Les actions annuelle:</h4>
                         </div>
+
+                        <div id="charts-id-1" class="mt-10 h-96 w-full">
+                            <h4 class="ml-5"> Les actions Total:</h4>
+                         </div>
                         @endif
                 </div>
             </div>
@@ -280,6 +289,16 @@
                 .pieColors(),
       });
 
+      const annee = new Chartisan({
+        el: '#thisYear',
+        url: "@chart('this_year_chart')",
+        hooks: new ChartisanHooks()
+                // .beginAtZero()
+                // .colors(['#ECC94B', '#4299E1'])
+                .datasets('doughnut')
+                .pieColors(),
+      });
+
       const chart = new Chartisan({
         el: '#chart',
         url: "@chart('home_chart')",
@@ -295,7 +314,7 @@
         url: "@chart('sexe_chart')",
         hooks: new ChartisanHooks()
                 .datasets('doughnut')
-                .pieColors(['#4e53e2', '#f06cdd']),
+                .pieColors(['#000080', '#ff00ff']),
                
        
       });
@@ -304,7 +323,15 @@
         url: "@chart('details_chart')",
         hooks: new ChartisanHooks()
                 .beginAtZero()
-                .colors(['#77ff58'])
+                .colors(['#90ee90'])
+      });
+
+      const serviceAnne = new Chartisan({
+        el: '#serviceAnne',
+        url: "@chart('details_chart_annee')",
+        hooks: new ChartisanHooks()
+                .beginAtZero()
+                .colors(['#ffcc99'])
       });
 
           </script>

@@ -80,9 +80,9 @@
              
                          <td class="border pl-6 " style="border-color: black">
                              {{-- <p class="ml-5 h-11  mx-2 "> --}}
-                                 @foreach ($services as $item)
+                                 @foreach ($service as $item)
                                  {{-- <li type="1" class=""> --}}
-                                     <b>• {{$item->service}}</b> <br>
+                                     <b>• {{$item}}</b> <br>
                                  @endforeach
                              {{-- </p> --}}
                          </td>

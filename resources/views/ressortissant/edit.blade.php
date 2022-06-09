@@ -12,10 +12,12 @@
     <img src="" id="display-image" class="mx-auto" style="max-height: 11rem; max-width: 11rem">
 
     <label for="num_fiche" class="text-gray-700 mt-5 mb-0">Numero de fiche: </label>
-    <input id="num_fiche" name="num_fiche" type="text" placeholder="Numero de fiche" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('num_fiche') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('num_fiche', $ressortissant->num_fiche) }}"/>
+    <input id="num_fiche"  type="text" placeholder="Numero de fiche" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('num_fiche') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ $ressortissant->num_fiche }}"/>
     @if ($errors->has('num_fiche'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('num_fiche') }}</span>
     @endif
+
+    <input type="hidden" name="num_fiche" value="{{$ressortissant->num_fiche }}" >
     
     <label for="cin" class="text-gray-700 mt-5 mb-0">N° Pièce d’identité du ressortissant:</label>
     <input id="cin" name="cin" type="text" placeholder="CIN du ressortissant" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('cin') border-pink-600  placeholder:text-pink-600 @enderror " value="{{ old('cin', $ressortissant->cin) }}" required />
@@ -93,9 +95,17 @@
         <option value="{{$ressortissant->formation}}">{{$ressortissant->formation}}</option>
 
         <option value="">Séléctionner la formation</option>
-        <option value="Forme juridique 1">formation 1</option>
-        <option value="Forme juridique 2">formation 2</option>
-        <option value="Forme juridique 3">formation 3</option>
+        <option value="APPRENTISSAGE">APPRENTISSAGE</option>
+        <option value="PRIMAIRE">PRIMAIRE</option>
+        <option value="SECONDAIRE">SECONDAIRE</option>
+        <option value="BAC">BAC</option>
+        <option value="TECHNICIEN">TECHNICIEN</option>
+        <option value="DEUG">DEUG</option>
+        <option value="BAC+2">BAC+2</option>
+        <option value="LICENCE">LICENCE</option>
+        <option value="MASTER/BAC+5">MASTER/BAC+5</option>
+        <option value="">DOCTORAT</option>
+        <option value="AUTRES">AUTRES</option>
     </select>
     @if ($errors->has('formation'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('formation') }}</span>
@@ -106,9 +116,11 @@
         <option value="{{$ressortissant->experience}}">{{$ressortissant->experience}}</option>
 
         <option value="">Séléctionner l'expérience</option>
-        <option value="Expérience 1">Expérience 1</option>
-        <option value="Expérience 2">Expérience 2</option>
-        <option value="Expérience 3">Expérience 3</option>
+        <option value="-1 AN">-1 AN</option>
+        <option value="ENTRE1 AN ET 5 ANS">ENTRE1 AN ET 5 ANS</option>
+        <option value="ENTRE 5 ANS ET 10 ANS">ENTRE 5 ANS ET 10 ANS</option>
+        <option value="+ DE 10 ANS ">+ DE 10 ANS </option>
+        <option value="AUTRES">AUTRES</option>
     </select>
     @if ($errors->has('experience'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('experience') }}</span>
@@ -138,26 +150,26 @@
     @endif
 
     <label for="rc" class="text-gray-700 mt-5 mb-0">RC:</label>
-    <input id="rc" name="rc" type="text"  placeholder = "RC"  class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('rc') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('rc', $ressortissant->rc) }}" required/>
+    <input id="rc" name="rc" type="text"  placeholder = "RC"  class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('rc') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('rc', $ressortissant->rc) }}"/>
      @if ($errors->has('rc'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('rc') }}</span>
     @endif
 
     
     <label for="date_rc" class="text-gray-700 mt-5 mb-0">Date RC:</label>
-    <input id="date_rc" name="date_rc" type="date" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('date_rc') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('date_rc', $ressortissant->date_rc) }}" required/>
+    <input id="date_rc" name="date_rc" type="date" class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('date_rc') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('date_rc', $ressortissant->date_rc) }}" />
      @if ($errors->has('date_rc'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('date_rc') }}</span>
     @endif
 
     <label for="lieu_rc" class="text-gray-700 mt-5 mb-0">Lieu RC:</label>
-    <input id="lieu_rc" name="lieu_rc" type="text"  placeholder = "Lieu RC"  class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('lieu_rc') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('lieu_rc', $ressortissant->lieu_rc) }}" required/>
+    <input id="lieu_rc" name="lieu_rc" type="text"  placeholder = "Lieu RC"  class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('lieu_rc') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('lieu_rc', $ressortissant->lieu_rc) }}" />
      @if ($errors->has('lieu_rc'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('lieu_rc') }}</span>
     @endif
 
     <label for="id_f" class="text-gray-700 mt-5 mb-0">IF:</label>
-    <input id="id_f" name="id_f" type="text"  placeholder = "IF"  class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('id_f') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('id_f', $ressortissant->id_f) }}" required/>
+    <input id="id_f" name="id_f" type="text"  placeholder = "IF"  class="w-9/12  mx-auto block rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 @error('id_f') border-pink-600  placeholder:text-pink-600 @enderror" value="{{ old('id_f', $ressortissant->id_f) }}" />
      @if ($errors->has('id_f'))
         <span class="w-9/12  mx-auto text-pink-600">{{ $errors->first('id_f') }}</span>
     @endif
@@ -217,7 +229,7 @@
         <option value="0">désactivé</option>
     </select>
 
-    <button type="submit" class="mx-auto p-2 m-5 rounded-sm w-fit bg-green-200 border border-slate-500  text-slate-600 hover:bg-green-300 hover:cursor-pointer">Modéfier le ressortissant</button>
+    <button type="submit" class="mx-auto p-2 m-5 rounded-sm w-fit bg-green-200 border border-slate-500  text-slate-600 hover:bg-green-300 hover:cursor-pointer">Modifier le ressortissant</button>
 
 </form>
 

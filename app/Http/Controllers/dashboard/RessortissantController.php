@@ -13,6 +13,7 @@ use App\Models\DemandeAdhesion;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class RessortissantController extends Controller
 {
@@ -45,7 +46,14 @@ foreach ($ressortissants as $ressortissant) {
      */
     public function create()
     {
-        return view('ressortissant.create');
+        $lastElement = Ressortissant::orderBy('res_id', 'DESC')->pluck("res_id")->first();
+        // dd($lastElement);
+        if ( $lastElement === null) {
+            $lastElement= 1;
+        }else{
+            $lastElement = $lastElement ++;
+        }
+        return view('ressortissant.create', ['lastElement' => $lastElement]);
     }
 
     /**
@@ -56,7 +64,6 @@ foreach ($ressortissants as $ressortissant) {
      */
     public function store(Request $request)
     {
-
         $request->validate([
             // "img" => "required|",
             "num_fiche" => "required|",
@@ -72,10 +79,10 @@ foreach ($ressortissants as $ressortissant) {
             "formation" => "required|",
             "qualite" => "required|",
             "ice" => "required|",
-            "rc" => "required|",
-            "date_rc" => "required|",
-            "lieu_rc" => "required|",
-            "id_f" => "required|",
+            // "rc" => "required|",
+            // "date_rc" => "required|",
+            // "lieu_rc" => "required|",
+            // "id_f" => "required|",
             "fomeJur" => "required|",
             "secteur" => "required|",
             "activite" => "required|",
@@ -262,10 +269,10 @@ foreach ($ressortissants as $ressortissant) {
             "formation" => "required|",
             "qualite" => "required|",
             "ice" => "required|",
-            "rc" => "required|",
-            "date_rc" => "required|",
-            "lieu_rc" => "required|",
-            "id_f" => "required|",
+            // "rc" => "required|",
+            // "date_rc" => "required|",
+            // "lieu_rc" => "required|",
+            // "id_f" => "required|",
             "fomeJur" => "required|",
             "secteur" => "required|",
             "activite" => "required|",
@@ -305,6 +312,9 @@ foreach ($ressortissants as $ressortissant) {
 
         if( !empty($request['img'])) {
             // dd($request->file('img')->getClientOriginalExtension());
+            if(Storage::exists('/images/'.$request['img'])) {
+                Storage::delete('file.jpg');
+            }
             $extension = $request->file('img')->getClientOriginalExtension();
             Ressortissant::where('res_id', '=', $id)
                 ->update([
